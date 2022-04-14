@@ -2,7 +2,6 @@
 
 import 'package:appclei/presentation/icon_login_icons.dart';
 import 'package:flutter/material.dart';
-import IconLogin from '../lib/presentation/icon_login_icons.dart';
 
 class LoginPage extends StatelessWidget {
   final ButtonStyle style1 = ElevatedButton.styleFrom(
@@ -52,34 +51,50 @@ class LoginPage extends StatelessWidget {
                   width: double.infinity,
                   // height: double.infinity,
                   child: ElevatedButton.icon(
-                    icon:  const Icon( IconLogin.icons8_facebook__1_
-                      ,
-                      color: Colors.pink,
+                    icon: const Icon(
+                      IconLogin.icons8_logo_de_google,
                       size: 24.0,
+                      
                     ),
-                    label: const Text('Elevated Button'),
+                    label: const Text('Iniciar con Google'),
                     onPressed: () {
                       print('Pressed');
-                    },style: style1,
+                    },
+                    style: style1,
                   ),
                 ),
                 SizedBox(
                   width: double.infinity,
                   // height: double.infinity,
-                  child: ElevatedButton(
+                  child: ElevatedButton.icon(
+                    icon: const Icon(
+                      IconLogin.icons8_facebook__1_,
+                      size: 24.0,
+                  
+                    ),
+                    label: const Text('Iniciar con Facebook'),
+                    onPressed: () {
+                      print('Pressed');
+                    },
                     style: style2,
-                    onPressed: () {},
-                    child: const Text('Iniciar con Facebook'),
                   ),
                 ),
                 SizedBox(
                   width: double.infinity,
                   // height: double.infinity,
-                  child: ElevatedButton(
+                  child: ElevatedButton.icon(
+                    icon: const Icon(
+                      IconLogin.icons8_linkedin,
+                      size: 24.0,
+                      color: Colors.white,
+                     
+                    ),
+                    label: const Text('Iniciar con LinkedIn'),
+                    onPressed: () {
+                      print('Pressed');
+                    },
                     style: style3,
-                    onPressed: () {},
-                    child: const Text('Iniciar con Gmail +'),
-                  ),
+                  )
                 ),
               ],
             ),
