@@ -1,8 +1,10 @@
 // ignore_for_file: unnecessary_const
 
+import 'package:appclei/presentation/icon_login_icons.dart';
 import 'package:flutter/material.dart';
+import IconLogin from '../lib/presentation/icon_login_icons.dart';
 
-class InicioPage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   final ButtonStyle style1 = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20),
       onPrimary: Colors.black,
@@ -36,8 +38,7 @@ class InicioPage extends StatelessWidget {
             child: Image(
               height: 200.0,
               width: 200.0,
-              image: NetworkImage(
-                  'https://www.uniquindio.edu.co/clei2022/info/uniquindio/media/bloque2271.png'),
+              image: AssetImage('assets/IconoClei.png'),
             ),
           ),
         ),
@@ -50,10 +51,16 @@ class InicioPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   // height: double.infinity,
-                  child: ElevatedButton(
-                    style: style1,
-                    onPressed: () {},
-                    child: const Text('Iniciar con Gmail +'),
+                  child: ElevatedButton.icon(
+                    icon:  const Icon( IconLogin.icons8_facebook__1_
+                      ,
+                      color: Colors.pink,
+                      size: 24.0,
+                    ),
+                    label: const Text('Elevated Button'),
+                    onPressed: () {
+                      print('Pressed');
+                    },style: style1,
                   ),
                 ),
                 SizedBox(
@@ -62,7 +69,7 @@ class InicioPage extends StatelessWidget {
                   child: ElevatedButton(
                     style: style2,
                     onPressed: () {},
-                    child: const Text('Iniciar con Gmail +'),
+                    child: const Text('Iniciar con Facebook'),
                   ),
                 ),
                 SizedBox(

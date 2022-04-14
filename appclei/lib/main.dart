@@ -1,4 +1,4 @@
-import 'package:appclei/src/Page/InicioPage.dart';
+import 'package:appclei/src/Page/login_page.dart';
 import 'package:appclei/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
        
         primarySwatch: Colors.blue,
       ),
-      home: InicioPage(),
+      initialRoute: '/',
+    routes: getApplicationRoutes(),
     );
   }
 }
