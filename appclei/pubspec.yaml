@@ -60,6 +60,10 @@ flutter:
   - family:  IconLogin
     fonts:
       - asset: fonts/IconLogin.ttf
+  - family:  Comfortaa
+    fonts:
+      - asset: fonts/Comfortaa-Light.ttf
+      
 
   # To add assets to your application, add an assets section, like this:
   assets:
