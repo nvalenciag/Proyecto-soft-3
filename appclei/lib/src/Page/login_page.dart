@@ -1,53 +1,25 @@
-// ignore_for_file: unnecessary_const
-
-import 'package:appclei/presentation/icon_login_icons.dart';
+// ignore_for_file: unnecessary_const, unnecessary_new
 import 'package:flutter/material.dart';
-import 'package:appclei/responsive_framework.dart';
 
 class LoginPage extends StatelessWidget {
-  final ButtonStyle style1 = ElevatedButton.styleFrom(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
-      textStyle: const TextStyle(fontSize: 20),
-      onPrimary: Colors.black,
-      primary: Colors.white);
-  final ButtonStyle style2 = ElevatedButton.styleFrom(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
-      textStyle: const TextStyle(fontSize: 20),
-      onPrimary: Colors.white,
-      primary: Color(0xFF3b5998));
-  final ButtonStyle style3 = ElevatedButton.styleFrom(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
-      textStyle: const TextStyle(fontSize: 20),
-      onPrimary: Colors.white,
-      primary: Colors.blue);
-
+ 
   @override
   Widget build(BuildContext context) {
-    return  // Large
-       Scaffold(
-        backgroundColor: Color(0xFF212121),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(70.0, 80.0, 70.0, 15.0),
-          child: _login(),
-        ),
-      )
-    ;
+    return // Large
+        Scaffold(
+      backgroundColor: Color(0xFF212121),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(70.0, 100.0, 70.0, 15.0),
+        child: _login(),
+      ),
+    );
   }
 
+ //Todo el contenido del login
   Widget _login() {
     return Column(
       children: [
-        const FittedBox(
-          alignment: Alignment.topCenter,
-          fit: BoxFit.contain, // otherwise the logo will be tiny
-          child: Center(
-            child: Image(
-              height: 300.0,
-              width: 300.0,
-              image: AssetImage('assets/IconoClei.png'),
-            ),
-          ),
-        ),
+        _imagenFondo(),
         Expanded(
           child: Center(
             child: Column(
@@ -57,28 +29,8 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   // height: double.infinity,
-                  child: ElevatedButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Image(
-                          height: 30.0,
-                          width: 30.0,
-                          image: AssetImage('assets/Google.png'),
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Iniciar con Google',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onPressed: () {
-                      print('Pressed');
-                    },
-                    style: style1,
-                  ),
+                  child: _boton('assets/google.png', 'Iniciar con Google',
+                      _estiloBoton(Colors.black, Colors.white)),
                 ),
                 Container(
                   height: 15.0,
@@ -86,27 +38,8 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   // height: double.infinity,
-                  child: ElevatedButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Icon(
-                          IconLogin.icons8_facebook__1_,
-                          size: 24.0,
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Iniciar con Facebook',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onPressed: () {
-                      print('Pressed');
-                    },
-                    style: style2,
-                  ),
+                  child: _boton('assets/facebook.png', 'Iniciar con Facebook',
+                      _estiloBoton(Colors.white, Color(0xFF495b94))),
                 ),
                 Container(
                   height: 15.0,
@@ -114,27 +47,8 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     // height: double.infinity,
-                    child: ElevatedButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Icon(
-                            IconLogin.icons8_linkedin,
-                            size: 24.0,
-                          ),
-                          Expanded(
-                            child: Text(
-                              'Iniciar con LinkedIn',
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      ),
-                      onPressed: () {
-                        print('Pressed');
-                      },
-                      style: style3,
-                    )),
+                    child: _boton('assets/linkedin.png', 'Iniciar con LinkedIn',
+                        _estiloBoton(Colors.white, Color(0xFF057ab6)))),
               ],
             ),
           ),
@@ -147,10 +61,62 @@ class LoginPage extends StatelessWidget {
             fit: BoxFit.contain, // otherwise the logo will be tiny
             child: Text(
               'Conferencia latinoamericana de informatica',
-              style: TextStyle(fontSize: 14, color: Colors.white),
+              style: TextStyle(fontSize: 35, color: Color(0xFFadadad)),
               textAlign: TextAlign.center,
             )),
       ],
     );
   }
+//Imagen logo de fondo
+  Widget _imagenFondo() {
+    return const FittedBox(
+      alignment: Alignment.topCenter,
+      fit: BoxFit.contain, // otherwise the logo will be tiny
+      child: Center(
+        child: Image(
+          height: 320.0,
+          width: 320.0,
+          image: AssetImage('assets/IconoClei.png'),
+        ),
+      ),
+    );
+  }
+//Metodo para crear botones se ingresa la ruta el nombre del boton y colores del boton
+  Widget _boton(String rutaIcono, String textoBoton, ButtonStyle estiloBoton) {
+    return ElevatedButton(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Image(
+            height: 50.0,
+            width: 50.0,
+            image: AssetImage(rutaIcono),
+          ),
+          Expanded(
+            child: Text(
+              textoBoton,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+      onPressed: () {
+        print('Pressed');
+      },
+      style: estiloBoton,
+    );
+  } 
+
+  //Metodo para indicar los colores de la letra y el fondo de un botonF
+  ButtonStyle _estiloBoton(Color letra, Color fondo) {
+    return ElevatedButton.styleFrom(
+        shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(13.0),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        textStyle: TextStyle(fontSize: 20.0, fontFamily: 'Comfortaa'),
+        onPrimary: letra,
+        primary: fondo);
+  }
+
 }
