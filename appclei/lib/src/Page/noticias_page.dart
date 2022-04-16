@@ -1,3 +1,5 @@
+import 'package:appclei/src/Page/fav_page.dart';
+import 'package:appclei/src/Page/notice_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,6 +11,43 @@ class NoticiasPage extends StatefulWidget{
 
 class _NoticiasPageState extends State<NoticiasPage> {
   int _selectedIndex = 0;
+
+  static List<Widget> _widgetOptions = <Widget>[
+    NoticePage(),
+    FavoritosPage(),
+    Text(
+      'Index 2: Buscar',
+    ),
+    Text(
+      'Index 2: Info',
+    ),
+    Text(
+      'Index 2: Perfil',
+    ),
+  ];
+
+  static List<Widget> _tittleOption = <Widget>[
+    Text(
+      'Home',
+      style: TextStyle(fontSize: 30, color: Colors.blue),
+    ),
+    Text(
+      'Favoritos',
+      style: TextStyle(fontSize: 30, color: Colors.blue),
+    ),
+    Text(
+      'Buscar',
+      style: TextStyle(fontSize: 30, color: Colors.blue),
+    ),
+    Text(
+      'Información',      
+      style: TextStyle(fontSize: 30, color: Colors.blue),
+    ),
+    Text(
+      'Perfil',
+      style: TextStyle(fontSize: 30, color: Colors.blue),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +62,7 @@ class _NoticiasPageState extends State<NoticiasPage> {
           margin: EdgeInsets.symmetric(vertical: 15,),
           child: Image(image: AssetImage('assets/atras.png'),color: Colors.blue),
         ),
-        title: const Text(
-          'Home',
-          style: TextStyle(color: Colors.blue, fontSize: 40, fontFamily: 'relaway',),
-        ),
+        title: _tittleOption.elementAt(_selectedIndex),
         actions: [
           Container(
             //color: Colors.red,
@@ -35,149 +71,36 @@ class _NoticiasPageState extends State<NoticiasPage> {
           ),
         ],
       ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          Container(
-            //color: Colors.red,
-            height: 50,
-            width: 200,
-            margin: EdgeInsets.symmetric(horizontal: 15.0),
-            child: Row(
-              children: [
-                Container(
-                  //color: Colors.black,
-                  width: 300,
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child :Text(
-                      "Noticias",
-                      style: TextStyle(color: Colors.blue,fontSize: 30, fontFamily: 'relaway'),
-                    ),
-                  ),
-                ),
-                Container(
-                  //color: Colors.green,
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child :Text(
-                            "Todas",
-                            style: TextStyle(color: Colors.blue,fontSize: 20, fontFamily: 'relaway'),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        //color: Colors.green,
-                        width: 20,
-                        child: Image(image: AssetImage('assets/next.png'),color: Colors.blue,),
-                      )
-                    ],
-                  ),                
-                )
-              ]
-            ,),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 5),
-            //color: Colors.green,
-            height: 300,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(width: 10,),
-                crearNoticia(), Container(width: 10,),
-                crearNoticia(), Container(width: 10,),
-              ],
-            ),
-          ),
-        Container(
-            //color: Colors.red,
-            height: 50,
-            width: 200,
-            margin: EdgeInsets.symmetric(horizontal: 15.0),
-            child: Row(
-              children: [
-                Container(
-                  //color: Colors.black,
-                  width: 300,
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child :Text(
-                      "Actividades CLEI",
-                      style: TextStyle(color: Colors.blue,fontSize: 30, fontFamily: 'relaway'),
-                    ),
-                  ),
-                ),
-                Container(
-                  //color: Colors.green,
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child :Text(
-                            "Todas",
-                            style: TextStyle(color: Colors.blue,fontSize: 20, fontFamily: 'relaway'),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        //color: Colors.green,
-                        width: 20,
-                        child: Image(image: AssetImage('assets/next.png'),color: Colors.blue,),
-                      )
-                    ],
-                  ),                
-                )
-              ]
-            ,),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 20.0),
-            height: 300,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                Container(width: 10,),
-                crearNoticia(), Container(width: 10,),
-                crearNoticia(), Container(width: 10,),   
-              ],
-            ),
-          ),
-        ],     
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar( 
         iconSize: 40,
         items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.black45,
             icon: Icon(Icons.home ),
-            label: 'add',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.black45,
             icon: Icon(Icons.star),
-            label: 'Hola',
+            label: 'Favoritos',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.black45,
             icon: Icon(Icons.find_in_page),
-            label: 'Jaja',
+            label: 'Buscar',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.black45,
             icon: Icon(Icons.info),
-            label: 'Jaja',
+            label: 'Info',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.black45,
             icon: Icon(Icons.people),
-            label: 'Jaja',
+            label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,
