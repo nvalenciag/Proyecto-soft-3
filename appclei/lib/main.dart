@@ -1,3 +1,4 @@
+import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/login_page.dart';
 import 'package:appclei/src/Page/noticias_page.dart';
@@ -17,7 +18,7 @@ class MyApp2 extends StatelessWidget{
   Widget build( context ){
     return MaterialApp(
       home: Center( 
-        child: NoticiasPage(),
+        child: CrearPage(),
         ),
     );
   }
