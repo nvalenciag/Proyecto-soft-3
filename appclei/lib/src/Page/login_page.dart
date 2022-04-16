@@ -1,21 +1,30 @@
 // ignore_for_file: unnecessary_const, unnecessary_new
+import 'package:appclei/Login/login_controller.dart';
+import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
- 
+  final controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    return // Large
-        Scaffold(
-      backgroundColor: Color(0xFF212121),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(70.0, 100.0, 70.0, 15.0),
-        child: _login(),
-      ),
-    );
+    return Obx(() {
+      if (controller.googleAccount.value == null)
+        return Scaffold(
+          backgroundColor: Color(0xFFE0F1F3),
+          body: Padding(
+            padding: const EdgeInsets.fromLTRB(40.0, 70.0, 40.0, 15.0),
+            child: _login(),
+          ),
+        );
+      else
+        return PerfilPage(
+          controller: controller,
+        );
+    }); // Large
   }
 
- //Todo el contenido del login
+  //Todo el contenido del login
   Widget _login() {
     return Column(
       children: [
@@ -27,28 +36,34 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: double.infinity,
+                  width: 600,
                   // height: double.infinity,
                   child: _boton('assets/google.png', 'Iniciar con Google',
-                      _estiloBoton(Colors.black, Colors.white)),
+                      _estiloBoton(Colors.black, Colors.white), 'Google'),
                 ),
                 Container(
                   height: 15.0,
                 ),
                 SizedBox(
-                  width: double.infinity,
+                  width: 600,
                   // height: double.infinity,
-                  child: _boton('assets/facebook.png', 'Iniciar con Facebook',
-                      _estiloBoton(Colors.white, Color(0xFF495b94))),
+                  child: _boton(
+                      'assets/facebook.png',
+                      'Iniciar con Facebook',
+                      _estiloBoton(Colors.white, Color(0xFF495b94)),
+                      'Facebook'),
                 ),
                 Container(
                   height: 15.0,
                 ),
                 SizedBox(
-                    width: double.infinity,
+                    width: 600,
                     // height: double.infinity,
-                    child: _boton('assets/linkedin.png', 'Iniciar con LinkedIn',
-                        _estiloBoton(Colors.white, Color(0xFF057ab6)))),
+                    child: _boton(
+                        'assets/twitter.png',
+                        'Iniciar con Twitter',
+                        _estiloBoton(Colors.white, Color(0xFF03a9f4)),
+                        'Twitter')),
               ],
             ),
           ),
@@ -59,14 +74,17 @@ class LoginPage extends StatelessWidget {
         const FittedBox(
             alignment: Alignment.bottomCenter,
             fit: BoxFit.contain, // otherwise the logo will be tiny
-            child: Text(
-              'Conferencia latinoamericana de informatica',
-              style: TextStyle(fontSize: 35, color: Color(0xFFadadad)),
-              textAlign: TextAlign.center,
-            )),
+            child: Center(
+        child: Image(
+          height: 100.0,
+          width: 600.0,
+          image: AssetImage('assets/Organizadores.png'),
+        ),
+      ),),
       ],
     );
   }
+
 //Imagen logo de fondo
   Widget _imagenFondo() {
     return const FittedBox(
@@ -75,14 +93,16 @@ class LoginPage extends StatelessWidget {
       child: Center(
         child: Image(
           height: 320.0,
-          width: 320.0,
-          image: AssetImage('assets/IconoClei.png'),
+          width: 600.0,
+          image: AssetImage('assets/LogoPrincipal.png'),
         ),
       ),
     );
   }
+
 //Metodo para crear botones se ingresa la ruta el nombre del boton y colores del boton
-  Widget _boton(String rutaIcono, String textoBoton, ButtonStyle estiloBoton) {
+  Widget _boton(String rutaIcono, String textoBoton, ButtonStyle estiloBoton,
+      String nameBoton) {
     return ElevatedButton(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -101,11 +121,34 @@ class LoginPage extends StatelessWidget {
         ],
       ),
       onPressed: () {
-        print('Pressed');
+        switch (nameBoton) {
+          case 'Google':
+            {
+              controller.login();
+            }
+            break;
+
+          case 'Facebook':
+            {
+              controller.login();
+            }
+            break;
+          case 'Twitter':
+            {
+              controller.login();
+            }
+            break;
+
+          default:
+            {
+              throw Exception("El boton no existe");
+            }
+            break;
+        }
       },
       style: estiloBoton,
     );
-  } 
+  }
 
   //Metodo para indicar los colores de la letra y el fondo de un botonF
   ButtonStyle _estiloBoton(Color letra, Color fondo) {
@@ -118,5 +161,4 @@ class LoginPage extends StatelessWidget {
         onPrimary: letra,
         primary: fondo);
   }
-
 }
