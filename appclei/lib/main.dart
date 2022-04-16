@@ -8,7 +8,7 @@ import 'package:appclei/responsive_framework.dart';
 
 
 void main() {
-  runApp( MyApp2());
+  runApp( MyApp());
 }
 
 class MyApp2 extends StatelessWidget{

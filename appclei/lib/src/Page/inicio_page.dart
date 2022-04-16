@@ -17,7 +17,7 @@ class InicioPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.pink,
         items: [
           BottomNavigationBarItem(
               icon: Icon(
