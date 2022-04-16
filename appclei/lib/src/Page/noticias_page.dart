@@ -14,114 +14,138 @@ class _NoticiasPageState extends State<NoticiasPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.grey[400],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black87,
-        leading: const Image(
-          color: Colors.cyan,
-          image: AssetImage('assets/IconoClei.png'),
+        toolbarHeight: 65,
+        backgroundColor: Colors.white,
+        leading: Container(
+          //color: Colors.green,
+          margin: EdgeInsets.symmetric(vertical: 15,),
+          child: Image(image: AssetImage('assets/atras.png'),color: Colors.blue),
         ),
-        centerTitle: true,
         title: const Text(
-          'CLEI',
-          style: TextStyle(color: Colors.cyan, fontSize: 45, fontFamily: 'relay',),
+          'Home',
+          style: TextStyle(color: Colors.blue, fontSize: 40, fontFamily: 'relaway',),
         ),
-        toolbarHeight: 70,
+        actions: [
+          Container(
+            //color: Colors.red,
+            margin: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
+            child: Image(image: AssetImage('assets/lupa.png'), color: Colors.blue,)
+          ),
+        ],
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
           Container(
-            height: 45,
-            margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 15.0),
-              child: TextField(
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                  suffixIcon: Image(
-                    image: AssetImage('assets/lupa.png'),
+            //color: Colors.red,
+            height: 50,
+            width: 200,
+            margin: EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              children: [
+                Container(
+                  //color: Colors.black,
+                  width: 300,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child :Text(
+                      "Noticias",
+                      style: TextStyle(color: Colors.blue,fontSize: 30, fontFamily: 'relaway'),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          Container(
-          margin: EdgeInsets.symmetric(horizontal: 15.0),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child :Text(
-            "Noticias",
-            style: TextStyle(color: Colors.black,fontSize: 30, fontFamily: 'rileay'),
-            textAlign: TextAlign.right,
-          ),
-        ),
-      ), 
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Divider(
-                  height: 8,
-                  thickness: 3,
-                  color: Colors.black,
+                Container(
+                  //color: Colors.green,
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child :Text(
+                            "Todas",
+                            style: TextStyle(color: Colors.blue,fontSize: 20, fontFamily: 'relaway'),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.bottomRight,
+                        //color: Colors.green,
+                        width: 20,
+                        child: Image(image: AssetImage('assets/next.png'),color: Colors.blue,),
+                      )
+                    ],
+                  ),                
                 )
-              ),
-            ],
+              ]
+            ,),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 20.0),
-            height: 180.0,
+            margin: EdgeInsets.symmetric(vertical: 5),
+            //color: Colors.green,
+            height: 300,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
                 Container(width: 10,),
-                crearNoticias().first,Container(width: 10,),
-                crearNoticias().elementAt(1),Container(width: 10,),
-                crearNoticias().elementAt(2),Container(width: 10,),
-                crearNoticias().elementAt(3),Container(width: 10,),
-                crearNoticias().elementAt(4),Container(width: 10,),
+                crearNoticia(), Container(width: 10,),
+                crearNoticia(), Container(width: 10,),
               ],
             ),
           ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 15.0),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child :Text(
-            "Actividades del CLEI",
-            style: TextStyle(color: Colors.black,fontSize: 30, fontFamily: 'rileay'),
-            textAlign: TextAlign.right,
-          ),
-        ),
-      ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Divider(
-                  height: 8,
-                  thickness: 3,
-                  color: Colors.black,
-                  
+            //color: Colors.red,
+            height: 50,
+            width: 200,
+            margin: EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              children: [
+                Container(
+                  //color: Colors.black,
+                  width: 300,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child :Text(
+                      "Actividades CLEI",
+                      style: TextStyle(color: Colors.blue,fontSize: 30, fontFamily: 'relaway'),
+                    ),
+                  ),
+                ),
+                Container(
+                  //color: Colors.green,
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child :Text(
+                            "Todas",
+                            style: TextStyle(color: Colors.blue,fontSize: 20, fontFamily: 'relaway'),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.bottomRight,
+                        //color: Colors.green,
+                        width: 20,
+                        child: Image(image: AssetImage('assets/next.png'),color: Colors.blue,),
+                      )
+                    ],
+                  ),                
                 )
-              ),
-            ],
+              ]
+            ,),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: 20.0),
-            height: 180.0,
+            height: 300,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: <Widget>[  
+              children: <Widget>[
                 Container(width: 10,),
-                crearNoticias().first,Container(width: 10,),
-                crearNoticias().elementAt(1),Container(width: 10,),
-                crearNoticias().elementAt(2),Container(width: 10,),
-                crearNoticias().elementAt(3),Container(width: 10,),
-                crearNoticias().elementAt(4),Container(width: 10,),
+                crearNoticia(), Container(width: 10,),
+                crearNoticia(), Container(width: 10,),   
               ],
             ),
           ),
@@ -131,33 +155,33 @@ class _NoticiasPageState extends State<NoticiasPage> {
         iconSize: 40,
         items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-            backgroundColor: Colors.black87,
+            backgroundColor: Colors.black,
             icon: Icon(Icons.home ),
             label: 'add',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black87,
+            backgroundColor: Colors.black,
             icon: Icon(Icons.star),
             label: 'Hola',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black87,
+            backgroundColor: Colors.black,
             icon: Icon(Icons.find_in_page),
             label: 'Jaja',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black87,
+            backgroundColor: Colors.black,
             icon: Icon(Icons.info),
             label: 'Jaja',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black87,
+            backgroundColor: Colors.black,
             icon: Icon(Icons.people),
             label: 'Jaja',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.cyan,
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );
@@ -170,13 +194,112 @@ class _NoticiasPageState extends State<NoticiasPage> {
   }
 }
 
-/**
- * currentIndex: _selectedIndex,
-        onTap: (index){
-          
-        },
- */
+class crearNoticia extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      width: 300,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.grey)
+      ),
+      child: Stack(
+        children: [
+          Container(
+            color: Colors.red,
+            child: Image(
+              image: AssetImage('assets/fondo.png'),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 150),
+            color: Colors.white,
+            height: 150,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey)
+            ),
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              child: Text(
+                'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
+                style: TextStyle(fontSize: 19),   
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
+            color: Colors.white,
+            child: Container(
+              margin: const EdgeInsets.all(5),
+              child: Text(
+                'El evento anual organizado por el centro latinoamericano de estudios de Estudios de Informatica que ocurre desde 1974, de modo itinerante por los paises Latinoamericanos',
+                textAlign: TextAlign.left,
+                style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
+class cuadroNoticia extends StatelessWidget{
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      width: 300,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        border: Border.all(color: Colors.grey)
+      ),
+      child: Container(
+        color: Colors.blue,
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only( top: 100, left: 30, right: 30),
+              height: 130,
+              width: 238,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey)
+              ),            
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                child: Text(
+                  'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
+                  style: TextStyle(fontSize: 20),   
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              height: 60,
+              width: 238,
+              child: Container(
+                margin: const EdgeInsets.all(5),
+                child: Text(
+                  'El evento anual organizado por el centro...',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.grey.shade800),
+                ),
+              ),
+            ),
+          ],    
+        )
+      ),    
+    );
+  }
+}
 
 class crearContenedorNoticia extends StatelessWidget{
 
@@ -234,7 +357,7 @@ class espacioFecha extends StatelessWidget{
     return Container( 
       width:40,
       height: 24,
-      //color: Colors.green,
+      color: Colors.green,
       child: Align(
         alignment: Alignment.topRight,
         child: Text('15/04/2022', 
@@ -254,7 +377,7 @@ class espacioTitulo extends StatelessWidget{
       width:100,
       height: 24,
       margin: const EdgeInsets.symmetric(horizontal: 5),
-      //color: Colors.red,
+        color: Colors.red,
         child: Text( "TITULO",
         style: TextStyle(fontSize: 20, color: Colors.white),                   
       ),

@@ -18,7 +18,7 @@ class MyApp2 extends StatelessWidget{
   Widget build( context ){
     return MaterialApp(
       home: Center( 
-        child: CrearPage(),
+        child: NoticiasPage(),
         ),
     );
   }
