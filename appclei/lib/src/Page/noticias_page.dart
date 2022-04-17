@@ -1,5 +1,6 @@
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
+import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -20,9 +21,6 @@ class _NoticiasPageState extends State<NoticiasPage> {
     ),
     Text(
       'Index 2: Info',
-    ),
-    Text(
-      'Index 2: Perfil',
     ),
   ];
 
@@ -76,35 +74,38 @@ class _NoticiasPageState extends State<NoticiasPage> {
       ),
       bottomNavigationBar: BottomNavigationBar( 
         iconSize: 40,
+        backgroundColor: Colors.blue,
         items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-            backgroundColor: Colors.black45,
-            icon: Icon(Icons.home ),
+            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
+            icon: Image(image: AssetImage('assets/home.png'),width: 30, color: Colors.grey,),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black45,
-            icon: Icon(Icons.star),
+            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
+            icon: Image(image: AssetImage('assets/fav.png'),width: 30, color: Colors.grey,),
             label: 'Favoritos',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black45,
-            icon: Icon(Icons.find_in_page),
+            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
+            icon: Image(image: AssetImage('assets/lupa.png'),width: 30, color: Colors.grey,),
             label: 'Buscar',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black45,
-            icon: Icon(Icons.info),
+            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
+            icon: Image(image: AssetImage('assets/info.png'),width: 30, color: Colors.grey,),
             label: 'Info',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black45,
-            icon: Icon(Icons.people),
+            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
+            icon: Image(image: AssetImage('assets/perfil.png'),width: 30,color: Colors.grey,),
             label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
+        //selectedFontSize: 15,
+        showUnselectedLabels: true,
         onTap: _onItemTapped,
       ),
     );
@@ -170,162 +171,4 @@ class crearNoticia extends StatelessWidget{
       ),
     );
   }
-}
-
-class cuadroNoticia extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      width: 300,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        border: Border.all(color: Colors.grey)
-      ),
-      child: Container(
-        color: Colors.blue,
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only( top: 100, left: 30, right: 30),
-              height: 130,
-              width: 238,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey)
-              ),            
-              child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                child: Text(
-                  'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
-                  style: TextStyle(fontSize: 20),   
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.white,
-              margin: const EdgeInsets.only(left: 30, right: 30),
-              height: 60,
-              width: 238,
-              child: Container(
-                margin: const EdgeInsets.all(5),
-                child: Text(
-                  'El evento anual organizado por el centro...',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.grey.shade800),
-                ),
-              ),
-            ),
-          ],    
-        )
-      ),    
-    );
-  }
-}
-
-class crearContenedorNoticia extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      width: 160.0,
-      decoration: BoxDecoration(
-        color: Colors.grey[850] ,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: [
-          //IMAGEN
-          Container(
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            child: Row(
-              children: [
-                //TITULO
-                espacioTitulo(),
-                //FECHA
-                espacioFecha(),
-              ],
-            ),
-          ),
-          //DESCRIPCION
-          espacioDescripcion(),
-        ],
-      ),
-    );
-  }
-}
-
-List<crearContenedorNoticia> crearNoticias(){
-  List<crearContenedorNoticia> noticias = [];
-  for(int i=0; i<=10; i++){
-    noticias.add( crearContenedorNoticia());               
-  }
-  return noticias;
-}
-
-class espacioFecha extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container( 
-      width:40,
-      height: 24,
-      color: Colors.green,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: Text('15/04/2022', 
-          style: TextStyle(fontSize: 7.5, color: Colors.white),
-        ),
-      ),
-    );
-  }
-}
-
-class espacioTitulo extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      width:100,
-      height: 24,
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-        color: Colors.red,
-        child: Text( "TITULO",
-        style: TextStyle(fontSize: 20, color: Colors.white),                   
-      ),
-    );
-  }
-}
-
-class espacioDescripcion extends StatelessWidget{
-  
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      //color: Colors.blue,
-      height: 60,
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: const Align(
-        alignment: Alignment.topLeft,
-        child: Text('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 
-        style: TextStyle(color: Colors.white, fontSize: 12),),
-      ),
-    );
-  }
-}
-
-Widget _buildItem( crearContenedorNoticia noticia ) {
-  return crearContenedorNoticia();
 }
