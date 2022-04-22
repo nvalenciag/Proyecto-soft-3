@@ -1,6 +1,7 @@
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
+import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -22,6 +23,7 @@ class _NoticiasPageState extends State<NoticiasPage> {
     Text(
       'Index 2: Info',
     ),
+    VisualisacionPage(),
   ];
 
   static List<Widget> _tittleOption = <Widget>[
