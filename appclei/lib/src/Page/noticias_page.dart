@@ -1,3 +1,4 @@
+import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
@@ -20,9 +21,7 @@ class _NoticiasPageState extends State<NoticiasPage> {
     Text(
       'Index 2: Buscar',
     ),
-    Text(
-      'Index 2: Info',
-    ),
+    CrearPage(),
     VisualisacionPage(),
   ];
 
