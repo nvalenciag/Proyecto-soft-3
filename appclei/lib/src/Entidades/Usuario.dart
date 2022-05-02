@@ -1,32 +1,14 @@
 class Usuario {
-  String nombre = "";
-  String correo = "";
-  String foto = "";
+  final String nombre;
+  final String correo;
+  final String rutaImagen;
 
+  Usuario(
+      {required this.nombre, required this.correo, required this.rutaImagen});
 
-  
-  //String rutaImagen;
-  String getNombre() {
-    return nombre;
-  }
+  get getNombre => this.nombre;
 
-  void setNombre(String nombre) {
-    this.nombre = nombre;
-  }
+  get getCorreo => this.correo;
 
-  String getCorreo() {
-    return correo;
-  }
-
-  void setCorreo(String correo) {
-    this.correo = correo;
-  }
-
-  String getFoto() {
-    return foto;
-  }
-
-  void setFoto(String foto) {
-    this.foto = foto;
-  }
+  get getRutaImagen => this.rutaImagen;
 }
