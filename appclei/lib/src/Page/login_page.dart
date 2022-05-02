@@ -157,7 +157,7 @@ class LoginPage extends StatelessWidget {
           borderRadius: new BorderRadius.circular(13.0),
         ),
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        textStyle: TextStyle(fontSize: 20.0, fontFamily: 'Comfortaa'),
+        textStyle: TextStyle(fontSize: 30, fontFamily: 'ModernSans'),
         onPrimary: letra,
         primary: fondo);
   }

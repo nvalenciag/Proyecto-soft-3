@@ -9,7 +9,7 @@ import 'package:appclei/responsive_framework.dart';
 
 
 void main() {
-  runApp( MyApp2());
+  runApp( MyApp());
 }
 
 class MyApp2 extends StatelessWidget{
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
        
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '.',
     routes: getApplicationRoutes(),
     );
   }

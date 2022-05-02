@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class PerfilPage extends StatelessWidget {
 LoginController controller;
+
    PerfilPage({required this.controller}) ;
 
   @override
@@ -20,10 +21,13 @@ LoginController controller;
   }
 
   Column buildProfileView() {
+
+    print(controller.googleAccount.value?.photoUrl ?? '');
     return Column(mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(
             backgroundImage: Image.network(controller.googleAccount.value?.photoUrl ?? '').image,
+           
             radius: 100,
           ),
           Text(controller.googleAccount.value?.displayName ?? '',
@@ -41,5 +45,7 @@ LoginController controller;
         
       );
   }
+
+
 
 }

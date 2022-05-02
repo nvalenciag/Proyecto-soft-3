@@ -60,12 +60,27 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   fonts:
-  - family:  IconLogin
+  - family:  IconsClei
     fonts:
-      - asset: fonts/IconLogin.ttf
+      - asset: fonts/IconsClei.ttf
   - family:  Comfortaa
     fonts:
       - asset: fonts/Comfortaa-Light.ttf
+  - family:  Coolvetica
+    fonts:
+      - asset: fonts/coolvetica rg.otf
+  - family:  LiberationSans
+    fonts:
+      - asset: fonts/LiberationSans-Regular.ttf
+  - family:  LinLibertine
+    fonts:
+      - asset: fonts/LinLibertine_RZ.ttf
+  - family:  ModernSans
+    fonts:
+      - asset: fonts/ModernSans-Light.otf
+  - family:  MyriadPro
+    fonts:
+      - asset: fonts/MyriadPro-Regular.otf
       
 
   # To add assets to your application, add an assets section, like this:
