@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_const, unnecessary_new
 import 'package:appclei/Login/login_controller.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,8 @@ class LoginPage extends StatelessWidget {
         );
       else
         return PerfilPage(
-          controller: controller,
+          usuario: Usuario(nombre: controller.googleAccount.value?.displayName ?? '', correo: controller.googleAccount.value?.email ?? '', rutaImagen: controller.googleAccount.value?.photoUrl ?? ''),
+          controller:controller,
         );
     }); // Large
   }
@@ -38,7 +40,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   width: 600,
                   // height: double.infinity,
-                  child: _boton('assets/google.png', 'Iniciar con Google',
+                  child: _boton('assets/Google.png', 'Iniciar con Google',
                       _estiloBoton(Colors.black, Colors.white), 'Google'),
                 ),
                 Container(
