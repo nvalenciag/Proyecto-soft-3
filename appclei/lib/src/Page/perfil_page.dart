@@ -1,13 +1,14 @@
 
 import 'package:appclei/Login/login_controller.dart';
 import 'package:appclei/src/Entidades/Usuario.dart';
+import 'package:appclei/src/Page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PerfilPage extends StatelessWidget {
-LoginController controller;
-Usuario usuario;
-   PerfilPage({required this.usuario,required this.controller}) ;
+final controller = Get.put(LoginController());
+final Usuario usuario;
+   PerfilPage({required this.usuario}) ;
 
   @override
   Widget build(BuildContext context) {
