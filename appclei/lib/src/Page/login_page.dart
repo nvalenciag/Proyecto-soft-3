@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_const, unnecessary_new
 import 'package:appclei/Login/login_controller.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
+import 'package:appclei/src/Page/noticias_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,9 +20,8 @@ class LoginPage extends StatelessWidget {
           ),
         );
       else
-        return PerfilPage(
-          controller: controller,
-        );
+        return NoticiasPage()
+        ;
     }); // Large
   }
 
@@ -157,7 +158,7 @@ class LoginPage extends StatelessWidget {
           borderRadius: new BorderRadius.circular(13.0),
         ),
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        textStyle: TextStyle(fontSize: 20.0, fontFamily: 'Comfortaa'),
+        textStyle: TextStyle(fontSize: 30, fontFamily: 'ModernSans'),
         onPrimary: letra,
         primary: fondo);
   }

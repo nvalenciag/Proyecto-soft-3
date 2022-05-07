@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "551822166359-pukqp2436nlcv06e1pjja35k651u5k9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.uniquindio.noticiasclei2022",
+            "certificate_hash": "debd595b582fcb906202562fa07d85efa712771d"
+          }
+        },
+        {
           "client_id": "551822166359-4bp66pebp1f112uctdsl12f0u3c483np.apps.googleusercontent.com",
           "client_type": 3
         }

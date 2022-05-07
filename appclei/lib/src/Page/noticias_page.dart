@@ -1,3 +1,4 @@
+import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
@@ -15,14 +16,14 @@ class NoticiasPage extends StatefulWidget{
 class _NoticiasPageState extends State<NoticiasPage> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     NoticePage(),
     FavoritosPage(),
     Text(
       'Index 2: Buscar',
     ),
     CrearPage(),
-    VisualisacionPage(),
+    PerfilPage(usuario: Usuario(nombre: '', correo: '', rutaImagen: ''),),
   ];
 
   static List<Widget> _tittleOption = <Widget>[

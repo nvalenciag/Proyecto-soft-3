@@ -1,11 +1,14 @@
 
 import 'package:appclei/Login/login_controller.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
+import 'package:appclei/src/Page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PerfilPage extends StatelessWidget {
-LoginController controller;
-   PerfilPage({required this.controller}) ;
+final controller = Get.put(LoginController());
+final Usuario usuario;
+   PerfilPage({required this.usuario}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +23,17 @@ LoginController controller;
   }
 
   Column buildProfileView() {
+
     return Column(mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(
-            backgroundImage: Image.network(controller.googleAccount.value?.photoUrl ?? '').image,
+            backgroundImage: Image.network(usuario.getRutaImagen).image,
+           
             radius: 100,
           ),
-          Text(controller.googleAccount.value?.displayName ?? '',
+          Text(usuario.getNombre,
           style:  Get.textTheme.headline3,),
-          Text(controller.googleAccount.value?.email ?? '',
+          Text(usuario.getCorreo,
           style:  Get.textTheme.bodyText1,),
           SizedBox(height: 16,),
           ActionChip(label: Text('Logout'),
@@ -41,5 +46,7 @@ LoginController controller;
         
       );
   }
+
+
 
 }

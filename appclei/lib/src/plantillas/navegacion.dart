@@ -1,54 +1,69 @@
+import 'dart:ui';
+
+import 'package:appclei/presentation/colors_clei.dart';
+import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:flutter/material.dart';
 
+class EstructuraNavegacion extends StatelessWidget {
+  static const Color colorIcono = ColorsCLei.gris;
+  static const Color colorIcono2 = ColorsCLei.azulOscuro;
+  TextStyle estiloTexto=  const TextStyle(fontFamily: 'ModernSans',fontSize: 17.0,height: 1.5 );
 
-class EstructuraNavegacion extends StatelessWidget{
- static const Color colorIcono=Color(0xFF6FCCFF);
+
+  EstructuraNavegacion(){
+
+
+
+  }
   @override
   Widget build(BuildContext context) {
-
-
-    return Scaffold(
-      backgroundColor: Color(0xFFd9d9d9),
-      appBar: AppBar(
-        backgroundColor: Color(0xFF212121),
-        leading: const Image(
-          image: AssetImage('assets/IconoClei.png'),
+    return BottomNavigationBar(
+    
+      iconSize: 30,
+      items:  [
+        BottomNavigationBarItem(
+          backgroundColor: ColorsCLei.grisClaro,
+          icon: Icon(
+            IconsClei.home,
+            color: colorIcono,
+          ),
+          label: 'Inicio',
+         
         ),
-        centerTitle: true,
-        title: const Text(
-          'CLEI',
-          style: TextStyle(color: colorIcono),
+        BottomNavigationBarItem(
+          icon: Icon(
+            IconsClei.favorito,
+            color: colorIcono,
+          ),
+          label: 'Favoritos',
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-         iconSize: 40,
-        
-        items: const [
-          BottomNavigationBarItem(
-            backgroundColor:Color(0xFF212121),
-            icon: Icon(Icons.home,color: colorIcono,),
-            label: 'Inicio',
+        BottomNavigationBarItem(
+          icon: Icon(
+            IconsClei.buscar,
+            color: colorIcono,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star,color: colorIcono,),
-            label: 'Favoritos',
+          label: 'Buscar',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            IconsClei.info,
+            color: colorIcono,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.find_in_page,color: colorIcono,),
-            label: 'Búsqueda',
+          label: 'Info',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            IconsClei.perfil,
+            color: colorIcono,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info,color: colorIcono,),
-            label: 'Info',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person,color: colorIcono,),
-            label: 'Perfil',
-          ),
-        ],
-      ),
+          label: 'Perfil',
+        ),
+      ],
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      unselectedLabelStyle: estiloTexto,
+      selectedLabelStyle: estiloTexto,
+      type: BottomNavigationBarType.fixed,
     );
   }
 }
-
-
