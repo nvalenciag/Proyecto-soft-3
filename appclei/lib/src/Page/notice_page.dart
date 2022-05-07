@@ -1,7 +1,9 @@
+import 'package:appclei/src/Page/noticia.dart';
 import 'package:flutter/material.dart';
 
-
 class NoticePage extends StatelessWidget{
+
+  Noticia miNoticia = Noticia.i( "Un título fachaaaa", "Una descrición aún más facha", "fondo.png" );
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +62,8 @@ class NoticePage extends StatelessWidget{
               scrollDirection: Axis.horizontal,
               children: [
                 Container(width: 10,),
-                crearNoticia(), Container(width: 10,),
-                crearNoticia(), Container(width: 10,),
+                crearNoticia(miNoticia), Container(width: 10,),
+                crearNoticia(miNoticia), Container(width: 10,),
               ],
             ),
           ),
@@ -115,8 +117,8 @@ class NoticePage extends StatelessWidget{
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 Container(width: 10,),
-                crearNoticia(), Container(width: 10,),
-                crearNoticia(), Container(width: 10,),   
+                crearNoticia(miNoticia), Container(width: 10,),
+                crearNoticia(miNoticia), Container(width: 10,),   
               ],
             ),
           ),
@@ -126,6 +128,13 @@ class NoticePage extends StatelessWidget{
 }
 
 class crearNoticia extends StatelessWidget{
+
+  Noticia miNoticia = Noticia( "", "");
+
+  crearNoticia( Noticia miNoticia ){
+    this.miNoticia = miNoticia;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -138,9 +147,9 @@ class crearNoticia extends StatelessWidget{
       child: Stack(
         children: [
           Container(
-            color: Colors.red,
+            //color: Colors.red,
             child: Image(
-              image: AssetImage('assets/fondo.png'),
+              image: AssetImage("assets/"+miNoticia.getImagen()),
             ),
           ),
           Container(
@@ -150,6 +159,8 @@ class crearNoticia extends StatelessWidget{
           ),
           Container(
             margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
+            width: 220,
+            height: 120,
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: Colors.grey)
@@ -157,7 +168,7 @@ class crearNoticia extends StatelessWidget{
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               child: Text(
-                'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
+                miNoticia.getTitulo(),
                 style: TextStyle(fontSize: 19),   
               ),
             ),
@@ -168,7 +179,7 @@ class crearNoticia extends StatelessWidget{
             child: Container(
               margin: const EdgeInsets.all(5),
               child: Text(
-                'El evento anual organizado por el centro latinoamericano de estudios de Estudios de Informatica que ocurre desde 1974, de modo itinerante por los paises Latinoamericanos',
+                miNoticia.getDescripcion(),
                 textAlign: TextAlign.left,
                 style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
               ),
