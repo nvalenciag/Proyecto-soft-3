@@ -36,7 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_sign_in: ^5.3.0
   get: ^4.6.1
-  mysql1: ^0.19.2
+  group_radio_button: ^1.2.0
+  http:
+
   
 
 dev_dependencies:
