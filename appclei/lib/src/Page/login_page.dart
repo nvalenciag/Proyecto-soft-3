@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_const, unnecessary_new
 import 'package:appclei/Login/login_controller.dart';
 import 'package:appclei/src/Entidades/Usuario.dart';
-import 'package:appclei/src/Page/noticias_page.dart';
+import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

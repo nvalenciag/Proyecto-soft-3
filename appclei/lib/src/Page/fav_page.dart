@@ -1,4 +1,4 @@
-import 'package:appclei/src/Page/noticias_page.dart';
+import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:flutter/material.dart';
 
 class FavoritosPage extends StatelessWidget{
