@@ -10,7 +10,7 @@ class CrearPage extends StatefulWidget {
 
 class _CrearPageState extends State<CrearPage> {
   final formKey = GlobalKey<FormState>();
-    final publicacionProvider =new PublicacionProvider();
+  final publicacionProvider = new PublicacionProvider();
   PublicacionModel publicacion = new PublicacionModel(
       id: "", titulo: "", descripcion: "", tipo: "", fotoUrl: "");
 
@@ -21,6 +21,8 @@ class _CrearPageState extends State<CrearPage> {
   bool _value = false;
 
   String _selectedGender = 'male';
+
+  Color _color = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -61,47 +63,30 @@ class _CrearPageState extends State<CrearPage> {
                     children: [
                       Stack(
                         children: [
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              color: Colors.white,
-                            ),
-                            child: Image(
-                              image: AssetImage('assets/default.png'),
-                            ),
-                          ),
+                          GestureDetector(
+                              onTap: () {
+                                print('jpas');
+                                setState(() {
+                                  _color == Colors.yellow
+                                      ? _color = Colors.white
+                                      : _color = Colors.yellow;
+                                });
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  color: Colors.white,
+                                ),
+                                child: Image(
+                                  image: AssetImage('assets/default.png'),
+                                ),
+                              )),
                           Container(
                             width: 40,
                             child: Image(image: AssetImage('assets/mas.png')),
                           ),
                         ],
-                      ),
-                      Container(
-                        width: 5,
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 15),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          color: Colors.white,
-                        ),
-                        child: Image(
-                          image: AssetImage('assets/fondo.png'),
-                        ),
-                      ),
-                      Container(
-                        width: 5,
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 15),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          color: Colors.white,
-                        ),
-                        child: Image(
-                          image: AssetImage('assets/fondo.png'),
-                        ),
                       ),
                     ],
                   ),
@@ -143,7 +128,7 @@ class _CrearPageState extends State<CrearPage> {
       child: Container(
         margin: EdgeInsets.only(left: 20, right: 20),
         child: TextFormField(
-          onSaved: (value) => publicacion.descripcion =  value!,
+          onSaved: (value) => publicacion.descripcion = value!,
           validator: (value) {
             if (value!.length < 2) {
               return 'Ingrese una descripcion mas larga';
@@ -188,7 +173,7 @@ class _CrearPageState extends State<CrearPage> {
           horizontalAlignment: MainAxisAlignment.spaceAround,
           onChanged: (value) => setState(() {
             _verticalGroupValue = value!;
-           publicacion.tipo=value;
+            publicacion.tipo = value;
           }),
           items: _status,
           textStyle: TextStyle(fontSize: 15, color: Colors.blue),
@@ -218,6 +203,5 @@ class _CrearPageState extends State<CrearPage> {
     formKey.currentState?.save();
 
     publicacionProvider.crearPublicacion(publicacion);
-
   }
 }
