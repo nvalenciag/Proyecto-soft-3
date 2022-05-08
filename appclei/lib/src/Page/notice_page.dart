@@ -1,4 +1,6 @@
+import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:appclei/src/Page/noticia.dart';
+import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:flutter/material.dart';
 
 class NoticePage extends StatelessWidget{
@@ -63,7 +65,6 @@ class NoticePage extends StatelessWidget{
               children: [
                 Container(width: 10,),
                 crearNoticia(miNoticia), Container(width: 10,),
-                crearNoticia(miNoticia), Container(width: 10,),
               ],
             ),
           ),
@@ -118,7 +119,6 @@ class NoticePage extends StatelessWidget{
               children: <Widget>[
                 Container(width: 10,),
                 crearNoticia(miNoticia), Container(width: 10,),
-                crearNoticia(miNoticia), Container(width: 10,),   
               ],
             ),
           ),
@@ -144,48 +144,55 @@ class crearNoticia extends StatelessWidget{
         color: Colors.white,
         border: Border.all(color: Colors.grey)
       ),
-      child: Stack(
-        children: [
-          Container(
-            //color: Colors.red,
-            child: Image(
-              image: AssetImage("assets/"+miNoticia.getImagen()),
+      child: GestureDetector(
+        onTap: (){
+          Navigator.pushNamed( 
+            context, ''
+          );
+        },
+        child: Stack(
+          children: [
+            Container(
+              //color: Colors.red,
+              child: Image(
+                image: AssetImage("assets/"+miNoticia.getImagen()),
+              ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 150),
-            color: Colors.white,
-            height: 150,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
-            width: 220,
-            height: 120,
-            decoration: BoxDecoration(
+            Container(
+              margin: EdgeInsets.only(top: 150),
               color: Colors.white,
-              border: Border.all(color: Colors.grey)
+              height: 150,
             ),
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              child: Text(
-                miNoticia.getTitulo(),
-                style: TextStyle(fontSize: 19),   
+            Container(
+              margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
+              width: 220,
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey)
+              ),
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                child: Text(
+                  miNoticia.getTitulo(),
+                  style: TextStyle(fontSize: 19),   
+                ),
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
-            color: Colors.white,
-            child: Container(
-              margin: const EdgeInsets.all(5),
-              child: Text(
-                miNoticia.getDescripcion(),
-                textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
+            Container(
+              margin: EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
+              color: Colors.white,
+              child: Container(
+                margin: const EdgeInsets.all(5),
+                child: Text(
+                  miNoticia.getDescripcion(),
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

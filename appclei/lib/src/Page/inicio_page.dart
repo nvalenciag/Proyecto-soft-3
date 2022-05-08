@@ -7,13 +7,13 @@ import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:flutter/material.dart';
 
 
-class NoticiasPage extends StatefulWidget{
+class InicioPage extends StatefulWidget{
 
   @override
-  State<NoticiasPage> createState() => _NoticiasPageState();
+  State<InicioPage> createState() => _InicioPageState();
 }
 
-class _NoticiasPageState extends State<NoticiasPage> {
+class _InicioPageState extends State<InicioPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
@@ -25,6 +25,10 @@ class _NoticiasPageState extends State<NoticiasPage> {
     CrearPage(),
     PerfilPage(usuario: Usuario(nombre: '', correo: '', rutaImagen: ''),),
   ];
+
+   visualizar(){
+    print('a');
+  }
 
   static List<Widget> _tittleOption = <Widget>[
     Text(
@@ -117,60 +121,5 @@ class _NoticiasPageState extends State<NoticiasPage> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-}
-
-class crearNoticia extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      width: 300,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey)
-      ),
-      child: Stack(
-        children: [
-          Container(
-            color: Colors.red,
-            child: Image(
-              image: AssetImage('assets/fondo.png'),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 150),
-            color: Colors.white,
-            height: 150,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey)
-            ),
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              child: Text(
-                'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
-                style: TextStyle(fontSize: 19),   
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
-            color: Colors.white,
-            child: Container(
-              margin: const EdgeInsets.all(5),
-              child: Text(
-                'El evento anual organizado por el centro latinoamericano de estudios de Estudios de Informatica que ocurre desde 1974, de modo itinerante por los paises Latinoamericanos',
-                textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

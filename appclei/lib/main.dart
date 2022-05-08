@@ -1,7 +1,7 @@
 import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/login_page.dart';
-import 'package:appclei/src/Page/noticias_page.dart';
+import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:appclei/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:appclei/responsive_framework.dart';
@@ -9,20 +9,20 @@ import 'package:appclei/responsive_framework.dart';
 
 
 void main() {
-  runApp( MyApp());
+  runApp( MyApp2());
 }
 
-/*class MyApp2 extends StatelessWidget{
+class MyApp2 extends StatelessWidget{
 
   @override
   Widget build( context ){
     return MaterialApp(
       home: Center( 
-        child: NoticiasPage(),
+        child: InicioPage(),
         ),
     );
   }
-}*/
+}
 
 
 class MyApp extends StatelessWidget {
