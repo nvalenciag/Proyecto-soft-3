@@ -9,20 +9,20 @@ import 'package:appclei/responsive_framework.dart';
 
 
 void main() {
-  runApp( MyApp());
+  runApp( MyApp2());
 }
 
-/*class MyApp2 extends StatelessWidget{
+class MyApp2 extends StatelessWidget{
 
   @override
   Widget build( context ){
     return MaterialApp(
       home: Center( 
-        child: NoticiasPage(),
+        child: InicioPage(),
         ),
     );
   }
-}*/
+}
 
 
 class MyApp extends StatelessWidget {

@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
           ),
         );
       else
-        return NoticiasPage()
+        return InicioPage()
         ;
     }); // Large
   }
