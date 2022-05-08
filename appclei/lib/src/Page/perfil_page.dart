@@ -7,8 +7,7 @@ import 'package:get/get.dart';
 
 class PerfilPage extends StatelessWidget {
 final controller = Get.put(LoginController());
-final Usuario usuario;
-   PerfilPage({required this.usuario}) ;
+final Usuario usuario = Usuario(nombre: 'd', correo: 'd', rutaImagen: 'd');
 
   @override
   Widget build(BuildContext context) {

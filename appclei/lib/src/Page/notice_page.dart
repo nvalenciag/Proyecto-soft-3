@@ -1,17 +1,21 @@
+import 'package:appclei/presentation/colors_clei.dart';
+import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:appclei/src/Page/noticia.dart';
 import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:flutter/material.dart';
 
-class NoticePage extends StatelessWidget{
-
-  Noticia miNoticia = Noticia.i( "Un título fachaaaa", "Una descrición aún más facha", "fondo.png" );
+class NoticePage extends StatelessWidget {
+  Noticia miNoticia = Noticia.i(
+      "Un título fachaaaa", "Una descrición aún más facha", "fondo.png");
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ListView(
-      scrollDirection: Axis.vertical,
+    return Scaffold(
+      appBar: appBarNoticias(),
+      body: ListView(
+        scrollDirection: Axis.vertical,
         children: [
           Container(
             //color: Colors.red,
@@ -25,9 +29,12 @@ class NoticePage extends StatelessWidget{
                   width: 300,
                   child: Align(
                     alignment: Alignment.bottomLeft,
-                    child :Text(
+                    child: Text(
                       "Noticias",
-                      style: TextStyle(color: Colors.blue,fontSize: 30, fontFamily: 'relaway'),
+                      style: TextStyle(
+                          color: ColorsCLei.azulOscuro,
+                          fontSize: 30,
+                          fontFamily: 'relaway'),
                     ),
                   ),
                 ),
@@ -38,9 +45,12 @@ class NoticePage extends StatelessWidget{
                       Container(
                         child: Align(
                           alignment: Alignment.bottomRight,
-                          child :Text(
+                          child: Text(
                             "Todas",
-                            style: TextStyle(color: Colors.blue,fontSize: 20, fontFamily: 'relaway'),
+                            style: TextStyle(
+                                color: ColorsCLei.azulOscuro,
+                                fontSize: 20,
+                                fontFamily: 'relaway'),
                           ),
                         ),
                       ),
@@ -48,13 +58,16 @@ class NoticePage extends StatelessWidget{
                         alignment: Alignment.bottomRight,
                         //color: Colors.green,
                         width: 20,
-                        child: Image(image: AssetImage('assets/next.png'),color: Colors.blue,),
+                        child: Image(
+                          image: AssetImage('assets/next.png'),
+                          color: ColorsCLei.azulOscuro,
+                        ),
                       )
                     ],
-                  ),                
+                  ),
                 )
-              ]
-            ,),
+              ],
+            ),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: 5),
@@ -63,12 +76,17 @@ class NoticePage extends StatelessWidget{
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                Container(width: 10,),
-                crearNoticia(miNoticia), Container(width: 10,),
+                Container(
+                  width: 10,
+                ),
+                crearNoticia(miNoticia),
+                Container(
+                  width: 10,
+                ),
               ],
             ),
           ),
-        Container(
+          Container(
             //color: Colors.red,
             height: 50,
             width: 200,
@@ -80,9 +98,12 @@ class NoticePage extends StatelessWidget{
                   width: 300,
                   child: Align(
                     alignment: Alignment.bottomLeft,
-                    child :Text(
+                    child: Text(
                       "Actividades CLEI",
-                      style: TextStyle(color: Colors.blue,fontSize: 30, fontFamily: 'relaway'),
+                      style: TextStyle(
+                          color: ColorsCLei.azulOscuro,
+                          fontSize: 30,
+                          fontFamily: 'relaway'),
                     ),
                   ),
                 ),
@@ -93,9 +114,12 @@ class NoticePage extends StatelessWidget{
                       Container(
                         child: Align(
                           alignment: Alignment.bottomRight,
-                          child :Text(
+                          child: Text(
                             "Todas",
-                            style: TextStyle(color: Colors.blue,fontSize: 20, fontFamily: 'relaway'),
+                            style: TextStyle(
+                                color: ColorsCLei.azulOscuro,
+                                fontSize: 20,
+                                fontFamily: 'relaway'),
                           ),
                         ),
                       ),
@@ -103,13 +127,16 @@ class NoticePage extends StatelessWidget{
                         alignment: Alignment.bottomRight,
                         //color: Colors.green,
                         width: 20,
-                        child: Image(image: AssetImage('assets/next.png'),color: Colors.blue,),
+                        child: Image(
+                          image: AssetImage('assets/next.png'),
+                          color: ColorsCLei.azulOscuro,
+                        ),
                       )
                     ],
-                  ),                
+                  ),
                 )
-              ]
-            ,),
+              ],
+            ),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: 20.0),
@@ -117,21 +144,46 @@ class NoticePage extends StatelessWidget{
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                Container(width: 10,),
-                crearNoticia(miNoticia), Container(width: 10,),
+                Container(
+                  width: 10,
+                ),
+                crearNoticia(miNoticia),
+                Container(
+                  width: 10,
+                ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  AppBar appBarNoticias() {
+    return AppBar(
+      title: Text(
+        'Inicio',
+        style: TextStyle(
+            color: ColorsCLei.azulOscuro,
+            fontFamily: 'Coolvetica',
+            fontSize: 30),
+      ),
+      backgroundColor: Colors.white,
+      toolbarHeight: 65,
+      elevation: 0.0,
+      actions:<Widget>[IconButton(icon: Icon(IconsClei.buscar,
+        color: ColorsCLei.azulOscuro,),
+        onPressed: (){},)
+        
+      ]
     );
   }
 }
 
-class crearNoticia extends StatelessWidget{
+class crearNoticia extends StatelessWidget {
+  Noticia miNoticia = Noticia("", "");
 
-  Noticia miNoticia = Noticia( "", "");
-
-  crearNoticia( Noticia miNoticia ){
+  crearNoticia(Noticia miNoticia) {
     this.miNoticia = miNoticia;
   }
 
@@ -141,21 +193,17 @@ class crearNoticia extends StatelessWidget{
     return Container(
       width: 300,
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey)
-      ),
+          color: Colors.white, border: Border.all(color: Colors.grey)),
       child: GestureDetector(
-        onTap: (){
-          Navigator.pushNamed( 
-            context, ''
-          );
+        onTap: () {
+          Navigator.pushNamed(context, '-');
         },
         child: Stack(
           children: [
             Container(
               //color: Colors.red,
               child: Image(
-                image: AssetImage("assets/"+miNoticia.getImagen()),
+                image: AssetImage("assets/" + miNoticia.getImagen()),
               ),
             ),
             Container(
@@ -164,23 +212,24 @@ class crearNoticia extends StatelessWidget{
               height: 150,
             ),
             Container(
-              margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
+              margin:
+                  EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
               width: 220,
               height: 120,
               decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey)
-              ),
+                  color: Colors.white, border: Border.all(color: Colors.grey)),
               child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 child: Text(
                   miNoticia.getTitulo(),
-                  style: TextStyle(fontSize: 19),   
+                  style: TextStyle(fontSize: 19),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
+              margin:
+                  EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
               color: Colors.white,
               child: Container(
                 margin: const EdgeInsets.all(5),

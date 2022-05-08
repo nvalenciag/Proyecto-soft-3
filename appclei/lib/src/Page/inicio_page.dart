@@ -1,3 +1,5 @@
+import 'package:appclei/presentation/colors_clei.dart';
+import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
@@ -6,15 +8,23 @@ import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:flutter/material.dart';
 
+class InicioPage extends StatefulWidget {
+  Usuario usuario;
 
-class InicioPage extends StatefulWidget{
-
+  InicioPage({required this.usuario});
   @override
-  State<InicioPage> createState() => _InicioPageState();
+  State<InicioPage> createState() => _InicioPageState(miUsuario: usuario);
 }
 
 class _InicioPageState extends State<InicioPage> {
   int _selectedIndex = 0;
+  Usuario miUsuario = Usuario(
+      nombre: 'default', correo: 'default', rutaImagen: 'assets/default.png');
+
+  _InicioPageState({required this.miUsuario});
+
+  TextStyle estiloTexto =
+      const TextStyle(fontFamily: 'ModernSans', fontSize: 17.0, height: 1.5);
 
   final List<Widget> _widgetOptions = <Widget>[
     NoticePage(),
@@ -23,95 +33,71 @@ class _InicioPageState extends State<InicioPage> {
       'Index 2: Buscar',
     ),
     CrearPage(),
-    PerfilPage(usuario: Usuario(nombre: '', correo: '', rutaImagen: ''),),
+    PerfilPage(),
   ];
 
-   visualizar(){
+  visualizar() {
     print('a');
   }
 
-  static List<Widget> _tittleOption = <Widget>[
-    Text(
-      'Home',
-      style: TextStyle(fontSize: 30, color: Colors.blue),
-    ),
-    Text(
-      'Favoritos',
-      style: TextStyle(fontSize: 30, color: Colors.blue),
-    ),
-    Text(
-      'Buscar',
-      style: TextStyle(fontSize: 30, color: Colors.blue),
-    ),
-    Text(
-      'Información',      
-      style: TextStyle(fontSize: 30, color: Colors.blue),
-    ),
-    Text(
-      'Perfil',
-      style: TextStyle(fontSize: 30, color: Colors.blue),
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 65,
-        backgroundColor: Colors.white,
-        leading: Container(
-          //color: Colors.green,
-          margin: EdgeInsets.symmetric(vertical: 15,),
-          child: Image(image: AssetImage('assets/atras.png'),color: Colors.blue),
-        ),
-        title: _tittleOption.elementAt(_selectedIndex),
-        actions: [
-          Container(
-            //color: Colors.red,
-            margin: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
-            child: Image(image: AssetImage('assets/lupa.png'), color: Colors.blue,)
-          ),
-        ],
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar( 
-        iconSize: 40,
-        backgroundColor: Colors.blue,
-        items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
-            icon: Image(image: AssetImage('assets/home.png'),width: 30, color: Colors.grey,),
-            label: 'Home',
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 30,
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: ColorsCLei.grisClaro,
+            icon: Icon(
+              IconsClei.home,
+              size: 26,
+            ),
+            label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
-            icon: Image(image: AssetImage('assets/fav.png'),width: 30, color: Colors.grey,),
+            icon: Icon(
+              IconsClei.favorito,
+              size: 26,
+            ),
             label: 'Favoritos',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
-            icon: Image(image: AssetImage('assets/lupa.png'),width: 30, color: Colors.grey,),
+            icon: Icon(
+              IconsClei.buscar,
+              size: 26,
+            ),
             label: 'Buscar',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
-            icon: Image(image: AssetImage('assets/info.png'),width: 30, color: Colors.grey,),
+            icon: Icon(
+              IconsClei.info,
+              size: 26,
+            ),
             label: 'Info',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromRGBO(237, 237, 236, 1),
-            icon: Image(image: AssetImage('assets/perfil.png'),width: 30,color: Colors.grey,),
+            icon: Icon(
+              IconsClei.perfil,
+              size: 26,
+            ),
             label: 'Perfil',
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        //selectedFontSize: 15,
+        showSelectedLabels: true,
         showUnselectedLabels: true,
+        unselectedLabelStyle: estiloTexto,
+        selectedLabelStyle: estiloTexto,
+        type: BottomNavigationBarType.fixed,
+        //currentIndex: _selectedIndex,
+        selectedItemColor: ColorsCLei.azulOscuro,
+        unselectedItemColor: ColorsCLei.gris,
+        elevation: 0.0,
+
+        //selectedFontSize: 15,
         onTap: _onItemTapped,
       ),
     );

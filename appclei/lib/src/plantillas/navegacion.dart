@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class EstructuraNavegacion extends StatelessWidget {
   static const Color colorIcono = ColorsCLei.gris;
   static const Color colorIcono2 = ColorsCLei.azulOscuro;
-  TextStyle estiloTexto=  const TextStyle(fontFamily: 'ModernSans',fontSize: 17.0,height: 1.5 );
+  TextStyle estiloTexto=  const TextStyle(fontFamily: 'LiberationSans',fontSize: 17.0,height: 1.5 );
 
 
   EstructuraNavegacion(){
@@ -55,6 +55,7 @@ class EstructuraNavegacion extends StatelessWidget {
           icon: Icon(
             IconsClei.perfil,
             color: colorIcono,
+            size: 5,
           ),
           label: 'Perfil',
         ),
@@ -64,6 +65,8 @@ class EstructuraNavegacion extends StatelessWidget {
       unselectedLabelStyle: estiloTexto,
       selectedLabelStyle: estiloTexto,
       type: BottomNavigationBarType.fixed,
+      elevation: 0.0,
+
     );
   }
 }

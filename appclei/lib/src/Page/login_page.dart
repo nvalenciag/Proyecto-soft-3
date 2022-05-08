@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   final controller = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -19,9 +20,13 @@ class LoginPage extends StatelessWidget {
             child: _login(),
           ),
         );
-      else
-        return InicioPage()
-        ;
+      else {
+        final Usuario miUsuario = Usuario(
+            nombre: controller.googleAccount.value?.displayName ?? '',
+            correo: controller.googleAccount.value?.email ?? '',
+            rutaImagen: controller.googleAccount.value?.photoUrl ?? '');
+        return InicioPage(usuario: miUsuario,);
+      }
     }); // Large
   }
 
@@ -73,15 +78,16 @@ class LoginPage extends StatelessWidget {
           height: 40.0,
         ),
         const FittedBox(
-            alignment: Alignment.bottomCenter,
-            fit: BoxFit.contain, // otherwise the logo will be tiny
-            child: Center(
-        child: Image(
-          height: 100.0,
-          width: 600.0,
-          image: AssetImage('assets/Organizadores.png'),
+          alignment: Alignment.bottomCenter,
+          fit: BoxFit.contain, // otherwise the logo will be tiny
+          child: Center(
+            child: Image(
+              height: 100.0,
+              width: 600.0,
+              image: AssetImage('assets/Organizadores.png'),
+            ),
+          ),
         ),
-      ),),
       ],
     );
   }

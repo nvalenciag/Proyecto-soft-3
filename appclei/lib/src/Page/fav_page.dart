@@ -1,58 +1,92 @@
+import 'package:appclei/presentation/colors_clei.dart';
+import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:flutter/material.dart';
 
-class FavoritosPage extends StatelessWidget{
-
+class FavoritosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        child: ListView(
-        scrollDirection: Axis.vertical,
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20),
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: new BorderRadius.circular(10),
-                border: Border.all(color: Colors.blue),
-                color: Colors.white,
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  suffixIcon: Container(
-                    margin: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-                      child: Image(
-                      image: AssetImage('assets/lupa.png'),
-                      color: Colors.blue,
-                    ),
+        appBar: appBarFavorito(),
+        body: Container(
+          margin: EdgeInsets.symmetric(horizontal: 30),
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              Container(
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: new BorderRadius.circular(10),
+                    border: Border.all(color: Colors.blue),
+                    color: Colors.white,
                   ),
-                  border: InputBorder.none,
-                  hintText: 'Buscar noticia', 
-                ),
-              )
-            ),
-            crearNoticia(),Container(height: 10,),
-            crearNoticia(),Container(height: 10,),
-          ],
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Container(
+                        margin:
+                            EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                        child: Image(
+                          image: AssetImage('assets/lupa.png'),
+                          color: Colors.blue,
+                        ),
+                      ),
+                      border: InputBorder.none,
+                      hintText: 'Buscar noticia',
+                    ),
+                  )),
+              crearNoticia(),
+              Container(
+                height: 10,
+              ),
+              crearNoticia(),
+              Container(
+                height: 10,
+              ),
+            ],
+          ),
+        ));
+  }
+
+  AppBar appBarFavorito() {
+    return AppBar(
+        title: Text(
+          'Favoritos',
+          style: TextStyle(
+              color: ColorsCLei.azulOscuro,
+              fontFamily: 'Coolvetica',
+              fontSize: 30),
         ),
-      )
-    );
-  }  
+        backgroundColor: Colors.white,
+        toolbarHeight: 65,
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              IconsClei.buscar,
+              color: ColorsCLei.azulOscuro,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(
+              IconsClei.tres_puntos,
+              color: ColorsCLei.azulOscuro,
+            ),
+            onPressed: () {},
+          )
+        ]);
+  }
 }
 
-class crearNoticia extends StatelessWidget{
+class crearNoticia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
       width: 300,
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey)
-      ),
+          color: Colors.white, border: Border.all(color: Colors.grey)),
       child: Stack(
         children: [
           Container(
@@ -69,14 +103,12 @@ class crearNoticia extends StatelessWidget{
           Container(
             margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey)
-            ),
+                color: Colors.white, border: Border.all(color: Colors.grey)),
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               child: Text(
                 'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
-                style: TextStyle(fontSize: 19),   
+                style: TextStyle(fontSize: 19),
               ),
             ),
           ),

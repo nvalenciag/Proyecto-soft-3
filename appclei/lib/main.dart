@@ -9,19 +9,7 @@ import 'package:appclei/responsive_framework.dart';
 
 
 void main() {
-  runApp( MyApp2());
-}
-
-class MyApp2 extends StatelessWidget{
-
-  @override
-  Widget build( context ){
-    return MaterialApp(
-      home: Center( 
-        child: InicioPage(),
-        ),
-    );
-  }
+  runApp( MyApp());
 }
 
 
@@ -48,7 +36,7 @@ class MyApp extends StatelessWidget {
        
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '+',
+      initialRoute: '/',
     routes: getApplicationRoutes(),
     );
   }
