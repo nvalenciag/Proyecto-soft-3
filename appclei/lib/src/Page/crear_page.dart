@@ -233,6 +233,8 @@ class _CrearPageState extends State<CrearPage> {
     publicacionProvider.crearPublicacion(publicacion);
   }
 
+  
+
 
 
   void _seleccinarFoto() async {

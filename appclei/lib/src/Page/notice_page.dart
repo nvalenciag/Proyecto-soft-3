@@ -1,14 +1,17 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
+import 'package:appclei/src/Entidades/Publicacion.dart';
 import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:appclei/src/Page/noticia.dart';
 import 'package:appclei/src/Page/visualizacion_page.dart';
+import 'package:appclei/src/models/publicacionModel.dart';
+import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
 
 class NoticePage extends StatelessWidget {
   Noticia miNoticia = Noticia.i(
-      "Un título fachaaaa", "Una descrición aún más facha", "fondo.png");
-
+      "", "", "fondo.png");
+final publicacionProvider= new PublicacionProvider();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -79,6 +82,7 @@ class NoticePage extends StatelessWidget {
                 Container(
                   width: 10,
                 ),
+                _crearListado(),
                 crearNoticia(miNoticia),
                 Container(
                   width: 10,
@@ -146,7 +150,7 @@ class NoticePage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: 10,
-                ),
+                ),_crearListado(),
                 crearNoticia(miNoticia),
                 Container(
                   width: 10,
@@ -158,7 +162,28 @@ class NoticePage extends StatelessWidget {
       ),
     );
   }
+  Widget _crearListado(){
+   
+    return FutureBuilder(future: publicacionProvider.cargarPublicacion(),
+    builder: (BuildContext context , AsyncSnapshot<List<PublicacionModel>>snapshot){
+       if(snapshot.hasData){ 
+         print('aaaaaaaaaaaa');
+         
+         final publicacion =snapshot.data;
+         return ListView.builder(itemCount:publicacion!.length,
+          itemBuilder: (BuildContext context, int index) =>_crearItem(publicacion[index]),);
+       }else{
+         print('aaaaaaaaaaaa');
+         return Center(child: CircularProgressIndicator());
+       }
+    }  );
+  }
 
+Widget _crearItem(PublicacionModel publicacion){
+  miNoticia.descripcion=publicacion.id;
+  return Container(
+  );
+}
   AppBar appBarNoticias() {
     return AppBar(
       title: Text(
@@ -196,6 +221,7 @@ class crearNoticia extends StatelessWidget {
           color: Colors.white, border: Border.all(color: Colors.grey)),
       child: GestureDetector(
         onTap: () {
+
           Navigator.pushNamed(context, '-');
         },
         child: Stack(
