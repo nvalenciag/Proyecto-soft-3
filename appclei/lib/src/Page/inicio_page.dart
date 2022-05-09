@@ -38,7 +38,9 @@ class _InicioPageState extends State<InicioPage> {
     Text(
       'Index 2: Buscar',
     ),
-    CrearPage(),
+    Text(
+      'Pagina info',
+    ),
    PerfilPage(usuario: miUsuario,),
   ];
 

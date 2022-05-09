@@ -1,11 +1,18 @@
 
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
+import 'package:appclei/src/Page/noticia.dart';
 import 'package:flutter/material.dart';
 
 class VisualisacionPage extends StatelessWidget {
+
+  
   @override
   Widget build(BuildContext context) {
+
+    Map data = {};
+    data = ModalRoute.of(context)?.settings.arguments as Map; 
+    final Noticia miNoticia = Noticia.i(data['titulo'],  data['descripcion'],data['imagenUrl']);
     // TODO: implement build
     return Scaffold(
       appBar: appBarVisualizacion(context),
@@ -16,13 +23,14 @@ class VisualisacionPage extends StatelessWidget {
             //color: Colors.amber,
             child: Stack(
               children: [
-                Image(image: AssetImage('assets/fondo.png')),
+                Image(image: Image.network('${miNoticia.getImagen()}').image),
                 Container(
                   margin: EdgeInsets.only(top: 200),
                   height: 100,
                   //color: Colors.blue,
                 ),
                 Container(
+                  alignment: Alignment.center,
                   margin: EdgeInsets.only(top: 150, left: 40, right: 40),
                   height: 120,
                   decoration: BoxDecoration(
@@ -32,15 +40,16 @@ class VisualisacionPage extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 20),
                     child: Text(
-                      'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
+                      '${miNoticia.titulo}',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
                 ),
                 Container(
+                  alignment: Alignment.bottomRight,
                   margin: EdgeInsets.only(
-                    top: 250,
-                    left: 290,
+                    top: 245,
+                    left: 350,
                   ),
                   //color: Colors.pink,
                   height: 20,
@@ -51,10 +60,10 @@ class VisualisacionPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 280, left: 40, right: 40),
+                  margin: EdgeInsets.only(top: 400, left: 40, right: 40),
                   //color: Colors.red,
                   child: Text(
-                      'Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion '),
+                      '${miNoticia.descripcion} '),
                 )
               ],
             ),

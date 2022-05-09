@@ -205,7 +205,7 @@ class NoticePage extends StatelessWidget {
 }
 
 class crearNoticia extends StatelessWidget {
-  Noticia miNoticia = Noticia("", "");
+  Noticia miNoticia = Noticia.i("", "", "");
 
   crearNoticia(Noticia miNoticia) {
     this.miNoticia = miNoticia;
@@ -220,7 +220,12 @@ class crearNoticia extends StatelessWidget {
           color: Colors.white, border: Border.all(color: Colors.grey)),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '-');
+          Map<String,String> map = {
+            'titulo': miNoticia.titulo,
+            'descripcion': miNoticia.descripcion,
+            'imagenUrl': miNoticia.imagenUrl
+          };
+          Navigator.pushNamed(context, '-', arguments: map);
         },
         child: Stack(
           children: [
