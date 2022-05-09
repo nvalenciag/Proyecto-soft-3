@@ -13,28 +13,6 @@ class FavoritosPage extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
-              Container(
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: new BorderRadius.circular(10),
-                    border: Border.all(color: Colors.blue),
-                    color: Colors.white,
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      suffixIcon: Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-                        child: Image(
-                          image: AssetImage('assets/lupa.png'),
-                          color: Colors.blue,
-                        ),
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Buscar noticia',
-                    ),
-                  )),
               crearNoticia(),
               Container(
                 height: 10,
