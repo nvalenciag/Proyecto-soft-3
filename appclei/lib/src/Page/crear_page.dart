@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:group_radio_button/group_radio_button.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CrearPage extends StatefulWidget {
   @override
@@ -10,24 +15,33 @@ class CrearPage extends StatefulWidget {
 
 class _CrearPageState extends State<CrearPage> {
   final formKey = GlobalKey<FormState>();
-  final publicacionProvider = new PublicacionProvider();
-  PublicacionModel publicacion = new PublicacionModel(
+  final publicacionProvider = PublicacionProvider();
+  PublicacionModel publicacion = PublicacionModel(
       id: "", titulo: "", descripcion: "", tipo: "", fotoUrl: "");
 
   List<String> _status = ["Noticia", "Actividad"];
 
-  String _singleValue = "Text alignment right";
+  final String _singleValue = "Text alignment right";
   String _verticalGroupValue = "Pending";
   bool _value = false;
 
   String _selectedGender = 'male';
-
   Color _color = Colors.white;
+
+  late File? image = null;
+
+  List _img = [];
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(IconsClei.flecha),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(15.0),
@@ -65,7 +79,7 @@ class _CrearPageState extends State<CrearPage> {
                         children: [
                           GestureDetector(
                               onTap: () {
-                                print('jpas');
+                                _seleccinarFoto();
                                 setState(() {
                                   _color == Colors.yellow
                                       ? _color = Colors.white
@@ -88,11 +102,18 @@ class _CrearPageState extends State<CrearPage> {
                           ),
                         ],
                       ),
+                      Container(
+                        width: 5,
+                      ),
+                      for (var i in _img) i,
+                      
                     ],
                   ),
                 ),
                 //CREACION DE LA DESCRIPCIÓN
+
                 _crearDescripcion(),
+               
                 Container(
                   margin: EdgeInsets.only(right: 25, left: 25),
                   child: Text('Tipo de publicación'),
@@ -196,12 +217,46 @@ class _CrearPageState extends State<CrearPage> {
     );
   }
 
-  void _submit() {
-    print(publicacion.titulo);
+  void _submit() async {
+    
     formKey.currentState?.validate();
 
     formKey.currentState?.save();
 
     publicacionProvider.crearPublicacion(publicacion);
+
+    setState((){});
+    if(image!=null){
+     publicacion.fotoUrl =(await publicacionProvider.subirImagen(image!))!;
+    }
+
+  }
+
+
+
+  void _seleccinarFoto() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      setState(() => this.image = imageTemporary);
+
+
+       if (this.image != null) {
+      Image a = Image.file(
+        this.image!,
+        width: 160,
+        height: 160,
+      );
+      this._img.add(a);
+      this._img.add(Container(
+            width: 40,
+          ));
+    }
+    } on PlatformException catch (e) {
+      print('Failed to pick image $e');
+    }
   }
 }

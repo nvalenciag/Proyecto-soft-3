@@ -38,6 +38,8 @@ dependencies:
   get: ^4.6.1
   group_radio_button: ^1.2.0
   http:
+  image_picker:
+  mime_type:
 
   
 
