@@ -9,9 +9,9 @@ import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
 
 class NoticePage extends StatelessWidget {
-  Noticia miNoticia = Noticia.i(
-      "", "", "fondo.png");
-final publicacionProvider= new PublicacionProvider();
+  Noticia miNoticia = Noticia.i("", "",
+      "https://avalos.sv/wp-content/uploads/default-featured-image.png");
+  final publicacionProvider = new PublicacionProvider();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -76,19 +76,7 @@ final publicacionProvider= new PublicacionProvider();
             margin: EdgeInsets.symmetric(vertical: 5),
             //color: Colors.green,
             height: 300,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                  width: 10,
-                ),
-                _crearListado(),
-                crearNoticia(miNoticia),
-                Container(
-                  width: 10,
-                ),
-              ],
-            ),
+            child: _crearListado(),
           ),
           Container(
             //color: Colors.red,
@@ -145,63 +133,74 @@ final publicacionProvider= new PublicacionProvider();
           Container(
             margin: EdgeInsets.symmetric(vertical: 20.0),
             height: 300,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                Container(
-                  width: 10,
-                ),_crearListado(),
-                crearNoticia(miNoticia),
-                Container(
-                  width: 10,
-                ),
-              ],
-            ),
+            child: _crearListado(),
           ),
         ],
       ),
     );
   }
-  Widget _crearListado(){
-   
-    return FutureBuilder(future: publicacionProvider.cargarPublicacion(),
-    builder: (BuildContext context , AsyncSnapshot<List<PublicacionModel>>snapshot){
-       if(snapshot.hasData){ 
-         print('aaaaaaaaaaaa');
-         
-         final publicacion =snapshot.data;
-         return ListView.builder(itemCount:publicacion!.length,
-          itemBuilder: (BuildContext context, int index) =>_crearItem(publicacion[index]),);
-       }else{
-         print('aaaaaaaaaaaa');
-         return Center(child: CircularProgressIndicator());
-       }
-    }  );
+
+  Widget _crearListado() {
+    return FutureBuilder(
+        future: publicacionProvider.cargarPublicacion(),
+        builder: (BuildContext context,
+            AsyncSnapshot<List<PublicacionModel>> snapshot) {
+          if (snapshot.hasData) {
+            print('aaaaaaaaaaaa');
+            final publicacion = snapshot.data;
+            int num = publicacion!.length;
+            return ListView.builder(
+              itemCount: num,
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.all(10),
+              itemBuilder: (context, num) {
+                Noticia miNoti = Noticia.i(publicacion[num].titulo,
+                    publicacion[num].descripcion, publicacion[num].fotoUrl);
+                return crearNoticia(miNoti);
+              },
+            ); /*ListView.builder(
+              itemCount: publicacion!.length,
+              /*itemBuilder: (BuildContext context, int index) =>
+                  _crearItem(publicacion[index]),*/
+              itemBuilder: (context,num ) {
+                return ListTile(
+                  title: Text(publicacion[num].titulo),
+                );
+              },
+            );*/
+          } else {
+            print('aaaaaaaaaaaa');
+            return Center(child: CircularProgressIndicator());
+          }
+        });
   }
 
-Widget _crearItem(PublicacionModel publicacion){
-  miNoticia.descripcion=publicacion.id;
-  return Container(
-  );
-}
+  Widget _crearItem(PublicacionModel publicacion) {
+    miNoticia.descripcion = publicacion.id;
+    return Container();
+  }
+
   AppBar appBarNoticias() {
     return AppBar(
-      title: Text(
-        'Inicio',
-        style: TextStyle(
-            color: ColorsCLei.azulOscuro,
-            fontFamily: 'Coolvetica',
-            fontSize: 30),
-      ),
-      backgroundColor: Colors.white,
-      toolbarHeight: 65,
-      elevation: 0.0,
-      actions:<Widget>[IconButton(icon: Icon(IconsClei.buscar,
-        color: ColorsCLei.azulOscuro,),
-        onPressed: (){},)
-        
-      ]
-    );
+        title: Text(
+          'Inicio',
+          style: TextStyle(
+              color: ColorsCLei.azulOscuro,
+              fontFamily: 'Coolvetica',
+              fontSize: 30),
+        ),
+        backgroundColor: Colors.white,
+        toolbarHeight: 65,
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              IconsClei.buscar,
+              color: ColorsCLei.azulOscuro,
+            ),
+            onPressed: () {},
+          )
+        ]);
   }
 }
 
@@ -221,7 +220,6 @@ class crearNoticia extends StatelessWidget {
           color: Colors.white, border: Border.all(color: Colors.grey)),
       child: GestureDetector(
         onTap: () {
-
           Navigator.pushNamed(context, '-');
         },
         child: Stack(
@@ -229,7 +227,7 @@ class crearNoticia extends StatelessWidget {
             Container(
               //color: Colors.red,
               child: Image(
-                image: AssetImage("assets/" + miNoticia.getImagen()),
+                image: Image.network('${miNoticia.getImagen()}').image,
               ),
             ),
             Container(

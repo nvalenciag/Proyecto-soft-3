@@ -6,7 +6,7 @@ class Noticia {
 
   String titulo = "";
   String descripcion = "";
-  String imagenUrl = "fondo.png";
+  String imagenUrl = "https://avalos.sv/wp-content/uploads/default-featured-image.png";
 
   Noticia ( String titulo, String descripcion){
     this.titulo = titulo;
