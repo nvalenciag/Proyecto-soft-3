@@ -12,28 +12,34 @@ class InicioPage extends StatefulWidget {
   Usuario usuario;
 
   InicioPage({required this.usuario});
+  
   @override
   State<InicioPage> createState() => _InicioPageState(miUsuario: usuario);
 }
 
 class _InicioPageState extends State<InicioPage> {
   int _selectedIndex = 0;
+  Usuario user=new Usuario(nombre: "", correo:"", rutaImagen: "");
+  
   Usuario miUsuario = Usuario(
       nombre: 'default', correo: 'default', rutaImagen: 'assets/default.png');
 
-  _InicioPageState({required this.miUsuario});
+  _InicioPageState({required this.miUsuario}){
+    
+  }
+  
 
   TextStyle estiloTexto =
       const TextStyle(fontFamily: 'ModernSans', fontSize: 17.0, height: 1.5);
 
-  final List<Widget> _widgetOptions = <Widget>[
+   List<Widget> _widgetOptions() =>  [
     NoticePage(),
     FavoritosPage(),
     Text(
       'Index 2: Buscar',
     ),
     CrearPage(),
-    PerfilPage(),
+   PerfilPage(usuario: miUsuario,),
   ];
 
   visualizar() {
@@ -42,10 +48,11 @@ class _InicioPageState extends State<InicioPage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> widgetOptions=_widgetOptions();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: widgetOptions[_selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
@@ -107,5 +114,8 @@ class _InicioPageState extends State<InicioPage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+  Usuario getUsuario(){
+    return this.miUsuario;
   }
 }

@@ -223,13 +223,14 @@ class _CrearPageState extends State<CrearPage> {
 
     formKey.currentState?.save();
 
-    publicacionProvider.crearPublicacion(publicacion);
 
     setState((){});
     if(image!=null){
      publicacion.fotoUrl =(await publicacionProvider.subirImagen(image!))!;
+  
     }
 
+    publicacionProvider.crearPublicacion(publicacion);
   }
 
 

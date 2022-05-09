@@ -50,7 +50,9 @@ Future<String?> subirImagen(File imagen) async {
   imageUploadRequest.files.add(file);
 
   final streamResponse =await imageUploadRequest.send();
+
   final resp =await http.Response.fromStream(streamResponse);
+  
 
   if(resp.statusCode!=200 &&resp.statusCode!=201){
 
@@ -59,7 +61,7 @@ Future<String?> subirImagen(File imagen) async {
     return null;
   }
   final respData = json.decode(resp.body);
-  print(respData);
+  print('$respData');
 
   return respData['secure_url'];
 
