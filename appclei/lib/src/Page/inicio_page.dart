@@ -92,7 +92,7 @@ class _InicioPageState extends State<InicioPage> {
         unselectedLabelStyle: estiloTexto,
         selectedLabelStyle: estiloTexto,
         type: BottomNavigationBarType.fixed,
-        //currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex,
         selectedItemColor: ColorsCLei.azulOscuro,
         unselectedItemColor: ColorsCLei.gris,
         elevation: 0.0,

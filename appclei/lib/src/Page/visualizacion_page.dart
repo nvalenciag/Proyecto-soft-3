@@ -1,55 +1,65 @@
+
+import 'package:appclei/presentation/colors_clei.dart';
+import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:flutter/material.dart';
 
-class VisualisacionPage extends StatelessWidget{
+class VisualisacionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: [
-        Container(
-          //color: Colors.amber,
-          child: Stack(
-            children: [
-              Image(image: AssetImage('assets/fondo.png')),
-              Container(
-                margin: EdgeInsets.only(top: 200),
-                height: 100,
-                //color: Colors.blue,
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 150, left: 40, right: 40),
-                height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey)
+    return Scaffold(
+      appBar: appBarVisualizacion(context),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          Container(
+            //color: Colors.amber,
+            child: Stack(
+              children: [
+                Image(image: AssetImage('assets/fondo.png')),
+                Container(
+                  margin: EdgeInsets.only(top: 200),
+                  height: 100,
+                  //color: Colors.blue,
                 ),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  child: Text(
-                    'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
-                    style: TextStyle(fontSize: 20),   
+                Container(
+                  margin: EdgeInsets.only(top: 150, left: 40, right: 40),
+                  height: 120,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey)),
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 20),
+                    child: Text(
+                      'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
-              ),
-              Container( 
-                margin: EdgeInsets.only(top: 250, left: 290,),
-                //color: Colors.pink,
-                height: 20,
-                width: 80,
-                child: Text('21/04/2022',
-                  textAlign: TextAlign.right,
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 250,
+                    left: 290,
+                  ),
+                  //color: Colors.pink,
+                  height: 20,
+                  width: 80,
+                  child: Text(
+                    '21/04/2022',
+                    textAlign: TextAlign.right,
+                  ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 280, left: 40, right: 40),
-                //color: Colors.red,
-                child: Text('Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion '),
-              )
-            ],
+                Container(
+                  margin: EdgeInsets.only(top: 280, left: 40, right: 40),
+                  //color: Colors.red,
+                  child: Text(
+                      'Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion Esta es la descripcion '),
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
+          Container(
               margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
               height: 40,
               decoration: BoxDecoration(
@@ -61,35 +71,73 @@ class VisualisacionPage extends StatelessWidget{
                 decoration: InputDecoration(
                   suffixIcon: Container(
                     margin: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-                      child: Image(
+                    child: Image(
                       image: AssetImage('assets/lupa.png'),
                       color: Colors.blue,
                     ),
                   ),
                   border: InputBorder.none,
-                  hintText: 'Agregar un comentario', 
+                  hintText: 'Agregar un comentario',
                 ),
-              )
-        ),
-        crearComentario(),
-        crearComentario()
-      ],
+              )),
+          crearComentario(),
+          crearComentario()
+        ],
+      ),
     );
+  }
+
+  AppBar appBarVisualizacion(BuildContext context) {
+    return AppBar(
+        title: Text(
+          'Inicio',
+          style: TextStyle(
+              color: ColorsCLei.azulOscuro,
+              fontFamily: 'Coolvetica',
+              fontSize: 30),
+        ),
+        backgroundColor: Colors.white,
+        toolbarHeight: 65,
+        elevation: 0.0,
+        leading: IconButton(
+            icon: Icon(
+              IconsClei.flecha,
+              color: ColorsCLei.azulOscuro,
+            ),
+            onPressed: () {
+              print('press');
+              Navigator.of(context).pop();
+            }),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              IconsClei.favorito,
+              color: ColorsCLei.azulOscuro,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(
+              IconsClei.compartir,
+              color: ColorsCLei.azulOscuro,
+            ),
+            onPressed: () {},
+          )
+        ]);
   }
 }
 
-class crearComentario extends StatelessWidget{
-
+class crearComentario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      margin: EdgeInsets.symmetric( horizontal: 30),         
+      margin: EdgeInsets.symmetric(horizontal: 30),
       //color: Colors.purple,
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.symmetric( horizontal: 10, vertical: 10),         
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: new BorderRadius.circular(100),
               color: Colors.white,
@@ -101,17 +149,18 @@ class crearComentario extends StatelessWidget{
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric( horizontal: 60, vertical: 20),         
+            margin: EdgeInsets.symmetric(horizontal: 60, vertical: 20),
             //color: Colors.pink,
             height: 20,
-            child: Text('Nombre real',
-              style: TextStyle( color: Colors.grey.shade700),
+            child: Text(
+              'Nombre real',
+              style: TextStyle(color: Colors.grey.shade700),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 10),         
+            margin: EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 10),
             //color: Colors.pink,
-            child: Text('Muy facha la publicacion'),             
+            child: Text('Muy facha la publicacion'),
           )
         ],
       ),
