@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   width: 600,
                   // height: double.infinity,
-                  child: _boton('assets/google.png', 'Iniciar con Google',
+                  child: _boton('assets/Google.png', 'Iniciar con Google',
                       _estiloBoton(Colors.black, Colors.white), 'Google'),
                 ),
                 Container(
