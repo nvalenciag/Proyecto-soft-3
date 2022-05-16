@@ -12,7 +12,7 @@ class VisualisacionPage extends StatelessWidget {
 
     Map data = {};
     data = ModalRoute.of(context)?.settings.arguments as Map; 
-    final Noticia miNoticia = Noticia.i(data['titulo'],  data['descripcion'],data['imagenUrl']);
+    final Noticia miNoticia = Noticia.i(data['titulo'],  data['descripcion'],data['imagenUrl'].split('+imag')[0]);
     // TODO: implement build
     return Scaffold(
       appBar: appBarVisualizacion(context),
@@ -23,7 +23,7 @@ class VisualisacionPage extends StatelessWidget {
             //color: Colors.amber,
             child: Stack(
               children: [
-                Image(image: Image.network('${miNoticia.getImagen()}').image),
+                Image(width:600,height: 350,image: Image.network('${miNoticia.getImagen()}').image),
                 Container(
                   margin: EdgeInsets.only(top: 200),
                   height: 100,

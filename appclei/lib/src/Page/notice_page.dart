@@ -76,7 +76,7 @@ class NoticePage extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 5),
             //color: Colors.green,
             height: 300,
-            child: _crearListado(),
+            child: _crearListado('Noticia'),
           ),
           Container(
             //color: Colors.red,
@@ -133,14 +133,14 @@ class NoticePage extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(vertical: 20.0),
             height: 300,
-            child: _crearListado(),
+            child: _crearListado('Actividad'),
           ),
         ],
       ),
     );
   }
 
-  Widget _crearListado() {
+  Widget _crearListado(String tipo) {
     return FutureBuilder(
         future: publicacionProvider.cargarPublicacion(),
         builder: (BuildContext context,
@@ -155,8 +155,8 @@ class NoticePage extends StatelessWidget {
               padding: EdgeInsets.all(10),
               itemBuilder: (context, num) {
                 Noticia miNoti = Noticia.i(publicacion[num].titulo,
-                    publicacion[num].descripcion, publicacion[num].fotoUrl);
-                return crearNoticia(miNoti);
+                    publicacion[num].descripcion, publicacion[num].fotoUrl.split("+imag+")[0]);
+                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl);
               },
             ); /*ListView.builder(
               itemCount: publicacion!.length,
@@ -206,15 +206,19 @@ class NoticePage extends StatelessWidget {
 
 class crearNoticia extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
+  bool tipo=false;
 
-  crearNoticia(Noticia miNoticia) {
+  crearNoticia(Noticia miNoticia, bool t,fotos) {
     this.miNoticia = miNoticia;
+    tipo=t;
+
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
+    if(tipo){
+    return Container(margin: const EdgeInsets.all(13.0),
       width: 300,
       decoration: BoxDecoration(
           color: Colors.white, border: Border.all(color: Colors.grey)),
@@ -273,5 +277,7 @@ class crearNoticia extends StatelessWidget {
         ),
       ),
     );
+    }
+    return Container();
   }
 }

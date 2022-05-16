@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
@@ -22,21 +23,31 @@ class _CrearPageState extends State<CrearPage> {
   List<String> _status = ["Noticia", "Actividad"];
 
   final String _singleValue = "Text alignment right";
-  String _verticalGroupValue = "Pending";
+  String _verticalGroupValue = "Noticia";
   bool _value = false;
 
   String _selectedGender = 'male';
   Color _color = Colors.white;
 
   late File? image = null;
+  String _titulo = "";
 
   List _img = [];
+
+  List _imag = [];
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        title: const Text(
+          'Inicio',
+          style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Crear Publicacion',
+              fontSize: 30),
+        ),
         leading: IconButton(
           icon: Icon(IconsClei.flecha),
           onPressed: () => Navigator.of(context).pop(),
@@ -53,20 +64,13 @@ class _CrearPageState extends State<CrearPage> {
                   height: 20,
                 ),
                 //CREACION DEL TITULO
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: new BorderRadius.circular(10),
-                    border: Border.all(color: Colors.blue),
-                    color: Colors.white,
-                  ),
-                  child: _crearTitulo(),
-                ),
+
+                _crearTitulo(),
+
                 //AGREGAR IMAGENES
                 Container(
                   margin: EdgeInsets.only(right: 25, left: 25),
-                  child: Text('Imagenes de portada'),
+                  child: Text('Imagenes de portada',style: TextStyle(fontSize: 20),),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 25, top: 20),
@@ -106,17 +110,16 @@ class _CrearPageState extends State<CrearPage> {
                         width: 5,
                       ),
                       for (var i in _img) i,
-                      
                     ],
                   ),
                 ),
                 //CREACION DE LA DESCRIPCIÓN
 
                 _crearDescripcion(),
-               
+
                 Container(
                   margin: EdgeInsets.only(right: 25, left: 25),
-                  child: Text('Tipo de publicación'),
+                  child: Text('Tipo de publicación',style: TextStyle(fontSize: 20),),
                 ),
                 Align(
                   alignment: Alignment.topCenter,
@@ -136,6 +139,35 @@ class _CrearPageState extends State<CrearPage> {
       ),
     );
   }
+  void _mostrarAlert(BuildContext context){
+
+showDialog(context: context,barrierDismissible: true, builder: (context){
+
+  return AlertDialog(
+    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20.0)),
+    title: Text('Mensaje'),
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text('La noticia se ha publicado'),
+        Container(height: 150,width:150,child: Image(image:AssetImage('assets/IconoClei.png'),) ,),
+       
+      ],
+    ),
+    actions: [
+      Center(child:  FlatButton(onPressed: (){Navigator.of(context).pop();Navigator.of(context).pop();}, child: Text('Aceptar')),)
+     
+     
+
+    ],
+
+
+  );
+
+});
+
+  }
+  
 
   Container _crearDescripcion() {
     return Container(
@@ -149,6 +181,7 @@ class _CrearPageState extends State<CrearPage> {
       child: Container(
         margin: EdgeInsets.only(left: 20, right: 20),
         child: TextFormField(
+          maxLines: 10,
           onSaved: (value) => publicacion.descripcion = value!,
           validator: (value) {
             if (value!.length < 2) {
@@ -166,23 +199,27 @@ class _CrearPageState extends State<CrearPage> {
     );
   }
 
-  Container _crearTitulo() {
-    return Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
-        child: TextFormField(
-          onSaved: (value) => publicacion.titulo = value!,
-          validator: (value) {
-            if (value!.length < 2) {
-              return 'Ingrese un titulo mas largo';
-            } else {
-              return null;
-            }
-          },
+  Widget _crearTitulo() {
+    return  Container(margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      child: TextField(
+          // autofocus: true, //interesante por que abre el teclado automaticamente
+          textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'Titulo',
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+            counter: Text('Letras ${_titulo.length}'),
+            hintText: 'Escriba un titulo',
+            labelText: 'Titulo',
+            suffixIcon: Icon(Icons.title),
           ),
-        ));
+          onChanged: (valor) {
+            setState(() {
+              _titulo = valor;
+              print(_titulo);
+            });
+          },
+        
+      ),
+    );
   }
 
   Row _radioboton() {
@@ -218,24 +255,23 @@ class _CrearPageState extends State<CrearPage> {
   }
 
   void _submit() async {
-    
+    String a = '';
     formKey.currentState?.validate();
 
     formKey.currentState?.save();
 
-
-    setState((){});
-    if(image!=null){
-     publicacion.fotoUrl =(await publicacionProvider.subirImagen(image!))!;
-  
+    setState(() {});
+    if (image != null) {
+      for (var i in _img) {
+        a = a + (await publicacionProvider.subirImagen(image!))! + '+imag+';
+        publicacion.fotoUrl = a;
+      }
     }
+    print('$a');
 
     publicacionProvider.crearPublicacion(publicacion);
+    _mostrarAlert(context);
   }
-
-  
-
-
 
   void _seleccinarFoto() async {
     try {
@@ -245,19 +281,19 @@ class _CrearPageState extends State<CrearPage> {
 
       final imageTemporary = File(image.path);
       setState(() => this.image = imageTemporary);
+      _imag.add(imageTemporary);
 
-
-       if (this.image != null) {
-      Image a = Image.file(
-        this.image!,
-        width: 160,
-        height: 160,
-      );
-      this._img.add(a);
-      this._img.add(Container(
-            width: 40,
-          ));
-    }
+      if (this.image != null) {
+        Image a = Image.file(
+          this.image!,
+          width: 160,
+          height: 160,
+        );
+        this._img.add(a);
+        this._img.add(Container(
+              width: 40,
+            ));
+      }
     } on PlatformException catch (e) {
       print('Failed to pick image $e');
     }

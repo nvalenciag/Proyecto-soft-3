@@ -17,5 +17,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     '.': (BuildContext context) => EstructuraNavegacion(),
     '+': (BuildContext context) => CrearPage(),
     '-': (BuildContext context) => VisualisacionPage(),
+    
   };
 }
