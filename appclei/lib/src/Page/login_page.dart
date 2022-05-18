@@ -12,15 +12,15 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.googleAccount.value == null)
+      if (controller.googleAccount.value == null) {
         return Scaffold(
-          backgroundColor: Color(0xFFE0F1F3),
+          backgroundColor: const Color(0xFFE0F1F3),
           body: Padding(
             padding: const EdgeInsets.fromLTRB(40.0, 70.0, 40.0, 15.0),
             child: _login(),
           ),
         );
-      else {
+      } else {
         final Usuario miUsuario = Usuario(
             nombre: controller.googleAccount.value?.displayName ?? '',
             correo: controller.googleAccount.value?.email ?? '',
@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
                   child: _boton(
                       'assets/facebook.png',
                       'Iniciar con Facebook',
-                      _estiloBoton(Colors.white, Color(0xFF495b94)),
+                      _estiloBoton(Colors.white, const Color(0xFF495b94)),
                       'Facebook'),
                 ),
                 Container(
@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
                     child: _boton(
                         'assets/twitter.png',
                         'Iniciar con Twitter',
-                        _estiloBoton(Colors.white, Color(0xFF03a9f4)),
+                        _estiloBoton(Colors.white, const Color(0xFF03a9f4)),
                         'Twitter')),
               ],
             ),
@@ -163,8 +163,8 @@ class LoginPage extends StatelessWidget {
         shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(13.0),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        textStyle: TextStyle(fontSize: 30, fontFamily: 'ModernSans'),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        textStyle: const TextStyle(fontSize: 30, fontFamily: 'ModernSans'),
         onPrimary: letra,
         primary: fondo);
   }

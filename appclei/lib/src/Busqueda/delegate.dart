@@ -6,8 +6,8 @@ class Delegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
       return [
         IconButton(
-          icon: Icon( Icons.clear ), 
-          onPressed: () => this.query = ''
+          icon: const Icon( Icons.clear ), 
+          onPressed: () => query = ''
         )
       ];
   }
@@ -15,22 +15,22 @@ class Delegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon( Icons.arrow_back_ios ),
-      onPressed: () => this.close(context, null )
+      icon: const Icon( Icons.arrow_back_ios ),
+      onPressed: () => close(context, null )
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
 
-      return Text('no hay valor en el query');
+      return const Text('no hay valor en el query');
     
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     return 
-          Text('buildSuggestions');
+          const Text('buildSuggestions');
   }
 
   

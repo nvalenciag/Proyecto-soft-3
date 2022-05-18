@@ -19,14 +19,12 @@ class InicioPage extends StatefulWidget {
 
 class _InicioPageState extends State<InicioPage> {
   int _selectedIndex = 0;
-  Usuario user=new Usuario(nombre: "", correo:"", rutaImagen: "");
+  Usuario user=Usuario(nombre: "", correo:"", rutaImagen: "");
   
   Usuario miUsuario = Usuario(
       nombre: 'default', correo: 'default', rutaImagen: 'assets/default.png');
 
-  _InicioPageState({required this.miUsuario}){
-    
-  }
+  _InicioPageState({required this.miUsuario});
   
 
   TextStyle estiloTexto =
@@ -35,10 +33,10 @@ class _InicioPageState extends State<InicioPage> {
    List<Widget> _widgetOptions() =>  [
     NoticePage(),
     FavoritosPage(),
-    Text(
+    const Text(
       'Index 2: Buscar',
     ),
-    Text(
+    const Text(
       'Pagina info',
     ),
    PerfilPage(usuario: miUsuario,),
@@ -58,7 +56,7 @@ class _InicioPageState extends State<InicioPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             backgroundColor: ColorsCLei.grisClaro,
             icon: Icon(
@@ -118,6 +116,6 @@ class _InicioPageState extends State<InicioPage> {
     });
   }
   Usuario getUsuario(){
-    return this.miUsuario;
+    return miUsuario;
   }
 }

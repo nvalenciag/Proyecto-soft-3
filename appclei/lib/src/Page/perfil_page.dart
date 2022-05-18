@@ -26,7 +26,7 @@ class PerfilPage extends StatelessWidget {
 
   AppBar appBarPerfil(bool isAdmin,BuildContext context ) {
     return AppBar(
-        title: Text(
+        title: const Text(
           'Perfil',
           style: TextStyle(
               color: ColorsCLei.azulOscuro,
@@ -41,7 +41,7 @@ class PerfilPage extends StatelessWidget {
               visible: isAdmin,
               child: IconButton(
                 iconSize: 40,
-                icon: Icon(
+                icon: const Icon(
                   Icons.add_box_rounded,
                   color: ColorsCLei.azulOscuro,
                 ),
@@ -68,7 +68,7 @@ class PerfilPage extends StatelessWidget {
         ),
         Text(
           usuario.getNombre,
-          style: TextStyle(
+          style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 25),
         ),
         Container(
@@ -76,19 +76,19 @@ class PerfilPage extends StatelessWidget {
         ),
         Text(
           usuario.getCorreo,
-          style: TextStyle(
+          style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 18),
         ),
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
         ElevatedButton.icon(
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(ColorsCLei.azulOscuro) ,fixedSize:MaterialStateProperty.all(Size(230, 50)) ),
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(ColorsCLei.azulOscuro) ,fixedSize:MaterialStateProperty.all(const Size(230, 50)) ),
           onPressed: () {
             controller.logout();
           },
-          icon: Icon(Icons.logout),
-          label: Text(
+          icon: const Icon(Icons.logout),
+          label: const Text(
             'Cerrar sesión',
             style: TextStyle(
                 color: Colors.white, fontFamily: 'ModernSans', fontSize: 25),

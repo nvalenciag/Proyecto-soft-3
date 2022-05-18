@@ -6,9 +6,9 @@ class Usuario {
   Usuario(
       {required this.nombre, required this.correo, required this.rutaImagen});
 
-  get getNombre => this.nombre;
+  get getNombre => nombre;
 
-  get getCorreo => this.correo;
+  get getCorreo => correo;
 
-  get getRutaImagen => this.rutaImagen;
+  get getRutaImagen => rutaImagen;
 }

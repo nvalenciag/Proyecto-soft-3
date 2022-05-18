@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class NoticePage extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
-  final publicacionProvider = new PublicacionProvider();
+  final publicacionProvider = PublicacionProvider();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,13 +24,13 @@ class NoticePage extends StatelessWidget {
             //color: Colors.red,
             height: 80,
             width: 200,
-            margin: EdgeInsets.symmetric(horizontal: 15.0),
+            margin: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   //color: Colors.black,
                   width: 300,
-                  child: Align(
+                  child: const Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       "Noticias",
@@ -46,7 +46,7 @@ class NoticePage extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        child: Align(
+                        child: const Align(
                           alignment: Alignment.bottomRight,
                           child: Text(
                             "Todas",
@@ -61,7 +61,7 @@ class NoticePage extends StatelessWidget {
                         alignment: Alignment.bottomRight,
                         //color: Colors.green,
                         width: 20,
-                        child: Image(
+                        child: const Image(
                           image: AssetImage('assets/next.png'),
                           color: ColorsCLei.azulOscuro,
                         ),
@@ -73,7 +73,7 @@ class NoticePage extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 5),
+            margin: const EdgeInsets.symmetric(vertical: 5),
             //color: Colors.green,
             height: 300,
             child: _crearListado('Noticia'),
@@ -82,13 +82,13 @@ class NoticePage extends StatelessWidget {
             //color: Colors.red,
             height: 50,
             width: 200,
-            margin: EdgeInsets.symmetric(horizontal: 15.0),
+            margin: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   //color: Colors.black,
                   width: 300,
-                  child: Align(
+                  child: const Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       "Actividades CLEI",
@@ -104,7 +104,7 @@ class NoticePage extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        child: Align(
+                        child: const Align(
                           alignment: Alignment.bottomRight,
                           child: Text(
                             "Todas",
@@ -119,7 +119,7 @@ class NoticePage extends StatelessWidget {
                         alignment: Alignment.bottomRight,
                         //color: Colors.green,
                         width: 20,
-                        child: Image(
+                        child: const Image(
                           image: AssetImage('assets/next.png'),
                           color: ColorsCLei.azulOscuro,
                         ),
@@ -131,7 +131,7 @@ class NoticePage extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 20.0),
+            margin: const EdgeInsets.symmetric(vertical: 20.0),
             height: 300,
             child: _crearListado('Actividad'),
           ),
@@ -152,7 +152,7 @@ class NoticePage extends StatelessWidget {
             return ListView.builder(
               itemCount: num,
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               itemBuilder: (context, num) {
                 Noticia miNoti = Noticia.i(publicacion[num].titulo,
                     publicacion[num].descripcion, publicacion[num].fotoUrl.split("+imag+")[0]);
@@ -170,7 +170,7 @@ class NoticePage extends StatelessWidget {
             );*/
           } else {
             print('aaaaaaaaaaaa');
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         });
   }
@@ -182,7 +182,7 @@ class NoticePage extends StatelessWidget {
 
   AppBar appBarNoticias() {
     return AppBar(
-        title: Text(
+        title: const Text(
           'Inicio',
           style: TextStyle(
               color: ColorsCLei.azulOscuro,
@@ -194,7 +194,7 @@ class NoticePage extends StatelessWidget {
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               IconsClei.buscar,
               color: ColorsCLei.azulOscuro,
             ),
@@ -236,17 +236,17 @@ class crearNoticia extends StatelessWidget {
             Container(
               //color: Colors.red,
               child: Image(
-                image: Image.network('${miNoticia.getImagen()}').image,
+                image: Image.network(miNoticia.getImagen()).image,
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 150),
+              margin: const EdgeInsets.only(top: 150),
               color: Colors.white,
               height: 150,
             ),
             Container(
               margin:
-                  EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
+                  const EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
               width: 220,
               height: 120,
               decoration: BoxDecoration(
@@ -256,13 +256,13 @@ class crearNoticia extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 child: Text(
                   miNoticia.getTitulo(),
-                  style: TextStyle(fontSize: 19),
+                  style: const TextStyle(fontSize: 19),
                 ),
               ),
             ),
             Container(
               margin:
-                  EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
+                  const EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
               color: Colors.white,
               child: Container(
                 margin: const EdgeInsets.all(5),
