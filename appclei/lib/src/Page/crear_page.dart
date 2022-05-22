@@ -9,6 +9,8 @@ import 'package:group_radio_button/group_radio_button.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CrearPage extends StatefulWidget {
+  const CrearPage({Key? key}) : super(key: key);
+
   @override
   State<CrearPage> createState() => _CrearPageState();
 }
@@ -21,11 +23,8 @@ class _CrearPageState extends State<CrearPage> {
 
   final List<String> _status = ["Noticia", "Actividad"];
 
-  final String _singleValue = "Text alignment right";
   String _verticalGroupValue = "Noticia";
-  final bool _value = false;
 
-  final String _selectedGender = 'male';
   Color _color = Colors.white;
 
   late File? image;
@@ -146,14 +145,14 @@ showDialog(context: context,barrierDismissible: true, builder: (context){
     title: const Text('Mensaje'),
     content: Column(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        const Text('La noticia se ha publicado'),
-        SizedBox(height: 150,width:150,child: const Image(image:AssetImage('assets/IconoClei.png'),) ,),
+      children: const [
+        Text('La noticia se ha publicado'),
+        SizedBox(height: 150,width:150,child: Image(image:AssetImage('assets/IconoClei.png'),) ,),
        
       ],
     ),
     actions: [
-      Center(child:  FlatButton(onPressed: (){Navigator.of(context).pop();Navigator.of(context).pop();}, child: const Text('Aceptar')),)
+      Center(child:  TextButton(onPressed: (){Navigator.of(context).pop();Navigator.of(context).pop();}, child: const Text('Aceptar')),)
      
      
 
@@ -200,6 +199,7 @@ showDialog(context: context,barrierDismissible: true, builder: (context){
   Widget _crearTitulo() {
     return  Container(margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: TextField(
+        
           // autofocus: true, //interesante por que abre el teclado automaticamente
           textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(
@@ -210,9 +210,9 @@ showDialog(context: context,barrierDismissible: true, builder: (context){
             suffixIcon: const Icon(Icons.title),
           ),
           onChanged: (valor) {
+             publicacion.titulo =valor;
             setState(() {
               _titulo = valor;
-              print(_titulo);
             });
           },
         
@@ -260,12 +260,12 @@ showDialog(context: context,barrierDismissible: true, builder: (context){
 
     setState(() {});
     if (image != null) {
+      // ignore: unused_local_variable
       for (var i in _img) {
         a = a + (await publicacionProvider.subirImagen(image!))! + '+imag+';
         publicacion.fotoUrl = a;
       }
     }
-    print(a);
 
     publicacionProvider.crearPublicacion(publicacion);
     _mostrarAlert(context);
@@ -293,6 +293,7 @@ showDialog(context: context,barrierDismissible: true, builder: (context){
             ));
       }
     } on PlatformException catch (e) {
+      // ignore: avoid_print
       print('Failed to pick image $e');
     }
   }

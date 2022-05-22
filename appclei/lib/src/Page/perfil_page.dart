@@ -1,21 +1,29 @@
 import 'package:appclei/Login/login_controller.dart';
 import 'package:appclei/presentation/colors_clei.dart';
-import 'package:appclei/presentation/icons_clei_icons.dart';
+
 import 'package:appclei/src/Entidades/Usuario.dart';
-import 'package:appclei/src/Page/login_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PerfilPage extends StatelessWidget {
-  final controller = Get.put(LoginController());
+class PerfilPage extends StatefulWidget {
   final Usuario usuario;
-  bool isAdmin = false;
 
-  PerfilPage({required this.usuario});
+  // ignore: use_key_in_widget_constructors
+  const PerfilPage({required this.usuario});
+
+  @override
+  State<PerfilPage> createState() => _PerfilPageState();
+}
+
+class _PerfilPageState extends State<PerfilPage> {
+  final controller = Get.put(LoginController());
+
+  bool isAdmin = false;
 
   @override
   Widget build(BuildContext context) {
-    esAdmin(usuario.correo);
+    esAdmin(widget.usuario.correo);
     return Scaffold(
       appBar: appBarPerfil(isAdmin,context),
       body: Center(
@@ -60,14 +68,14 @@ class PerfilPage extends StatelessWidget {
           height: 25,
         ),
         CircleAvatar(
-          backgroundImage: Image.network(usuario.getRutaImagen).image,
+          backgroundImage: Image.network(widget.usuario.getRutaImagen).image,
           radius: 140,
         ),
         Container(
           height: 25,
         ),
         Text(
-          usuario.getNombre,
+          widget.usuario.getNombre,
           style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 25),
         ),
@@ -75,7 +83,7 @@ class PerfilPage extends StatelessWidget {
           height: 25,
         ),
         Text(
-          usuario.getCorreo,
+          widget.usuario.getCorreo,
           style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 18),
         ),

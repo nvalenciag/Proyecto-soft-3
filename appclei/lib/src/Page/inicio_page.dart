@@ -1,20 +1,19 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Entidades/Usuario.dart';
-import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/info_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
-import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:flutter/material.dart';
 
 class InicioPage extends StatefulWidget {
   Usuario usuario;
 
-  InicioPage({required this.usuario});
+  InicioPage({Key? key, required this.usuario}) : super(key: key);
   
   @override
+  // ignore: no_logic_in_create_state
   State<InicioPage> createState() => _InicioPageState(miUsuario: usuario);
 }
 
