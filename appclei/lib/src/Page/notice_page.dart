@@ -236,40 +236,47 @@ class crearNoticia extends StatelessWidget {
             Container(
               //color: Colors.red,
               child: Image(
-                image: Image.network(miNoticia.getImagen()).image,
+                image: Image.network(
+                  miNoticia.getImagen(),
+                ).image,
               ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 150),
-              color: Colors.white,
-              height: 150,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey.shade400)),
+              child: Container(
+                margin: const EdgeInsets.only(top: 47, left: 40, right: 40),
+                child: Container(
+                  margin: const EdgeInsets.all(5),
+                  child: Text( miNoticia.getDescripcion(),
+                    textAlign: TextAlign.left,
+                    style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
+                  ),
+                ),
+              ),      
             ),
             Container(
               margin:
-                  const EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
-              width: 220,
-              height: 120,
+              const EdgeInsets.only(top: 100, bottom: 60, left: 30, right: 30),
+              width: 1000,
+              height: 1000,
               decoration: BoxDecoration(
                   color: Colors.white, border: Border.all(color: Colors.grey)),
               child: Container(
                 margin:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                child: Text(
-                  miNoticia.getTitulo(),
-                  style: const TextStyle(fontSize: 19),
-                ),
-              ),
-            ),
-            Container(
-              margin:
-                  const EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
-              color: Colors.white,
-              child: Container(
-                margin: const EdgeInsets.all(5),
-                child: Text(
-                  miNoticia.getDescripcion(),
-                  textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                child: Center(
+                  child: Text(
+                    miNoticia.getTitulo(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 19
+                    ),
+                  ),
                 ),
               ),
             ),

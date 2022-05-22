@@ -3,6 +3,7 @@ import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
+import 'package:appclei/src/Page/info_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:appclei/src/Page/visualizacion_page.dart';
@@ -36,10 +37,8 @@ class _InicioPageState extends State<InicioPage> {
     const Text(
       'Index 2: Buscar',
     ),
-    const Text(
-      'Pagina info',
-    ),
-   PerfilPage(usuario: miUsuario,),
+    InfoPage(),
+    PerfilPage(usuario: miUsuario,),
   ];
 
   visualizar() {

@@ -23,12 +23,20 @@ class VisualisacionPage extends StatelessWidget {
             //color: Colors.amber,
             child: Stack(
               children: [
-                Image(width:600,height: 350,image: Image.network(miNoticia.getImagen()).image),
+                Image(image: Image.network(miNoticia.getImagen()).image),
                 Container(
                   margin: const EdgeInsets.only(top: 200),
-                  height: 100,
-                  //color: Colors.blue,
-                ),
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey)),
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 100, left: 40, right: 40, bottom: 100),
+                    //color: Colors.red,
+                    child: Text(
+                        '${miNoticia.descripcion} '),
+                    ),
+                  ),
                 Container(
                   alignment: Alignment.center,
                   margin: const EdgeInsets.only(top: 150, left: 40, right: 40),
@@ -59,12 +67,6 @@ class VisualisacionPage extends StatelessWidget {
                     textAlign: TextAlign.right,
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 400, left: 40, right: 40),
-                  //color: Colors.red,
-                  child: Text(
-                      '${miNoticia.descripcion} '),
-                )
               ],
             ),
           ),
