@@ -1,9 +1,10 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
-import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:flutter/material.dart';
 
 class FavoritosPage extends StatelessWidget {
+  const FavoritosPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,7 @@ class FavoritosPage extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(
-              IconsClei.tres_puntos,
+              IconsClei.trespuntos,
               color: ColorsCLei.azulOscuro,
             ),
             onPressed: () {},
@@ -60,6 +61,7 @@ class FavoritosPage extends StatelessWidget {
 class crearNoticia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: todo
     // TODO: implement build
     return Container(
       width: 300,

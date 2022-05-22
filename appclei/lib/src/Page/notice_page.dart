@@ -1,9 +1,6 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
-import 'package:appclei/src/Entidades/Publicacion.dart';
-import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:appclei/src/Page/noticia.dart';
-import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +11,7 @@ class NoticePage extends StatelessWidget {
   final publicacionProvider = PublicacionProvider();
   @override
   Widget build(BuildContext context) {
+    // ignore: todo
     // TODO: implement build
     return Scaffold(
       appBar: appBarNoticias(),
@@ -27,10 +25,10 @@ class NoticePage extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   //color: Colors.black,
                   width: 300,
-                  child: const Align(
+                  child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       "Noticias",
@@ -85,10 +83,10 @@ class NoticePage extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   //color: Colors.black,
                   width: 300,
-                  child: const Align(
+                  child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       "Actividades CLEI",
@@ -99,33 +97,28 @@ class NoticePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  //color: Colors.green,
-                  child: Row(
-                    children: [
-                      Container(
-                        child: const Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                            "Todas",
-                            style: TextStyle(
-                                color: ColorsCLei.azulOscuro,
-                                fontSize: 20,
-                                fontFamily: 'relaway'),
-                          ),
-                        ),
+                Row(
+                  children: [
+                    const Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        "Todas",
+                        style: TextStyle(
+                            color: ColorsCLei.azulOscuro,
+                            fontSize: 20,
+                            fontFamily: 'relaway'),
                       ),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        //color: Colors.green,
-                        width: 20,
-                        child: const Image(
-                          image: AssetImage('assets/next.png'),
-                          color: ColorsCLei.azulOscuro,
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      //color: Colors.green,
+                      width: 20,
+                      child: const Image(
+                        image: AssetImage('assets/next.png'),
+                        color: ColorsCLei.azulOscuro,
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
@@ -175,10 +168,6 @@ class NoticePage extends StatelessWidget {
         });
   }
 
-  Widget _crearItem(PublicacionModel publicacion) {
-    miNoticia.descripcion = publicacion.id;
-    return Container();
-  }
 
   AppBar appBarNoticias() {
     return AppBar(
