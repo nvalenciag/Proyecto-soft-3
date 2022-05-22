@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
@@ -38,7 +37,6 @@ class _CrearPageState extends State<CrearPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -100,9 +98,9 @@ class _CrearPageState extends State<CrearPage> {
                                   image: AssetImage('assets/default.png'),
                                 ),
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 40,
-                            child: const Image(image: AssetImage('assets/mas.png')),
+                            child: Image(image: AssetImage('assets/mas.png')),
                           ),
                         ],
                       ),
