@@ -54,7 +54,7 @@ class _PerfilPageState extends State<PerfilPage> {
                   color: ColorsCLei.azulOscuro,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '+');
+                  Navigator.pushNamed(context, 'm');
                 },
               ))
         ]);
