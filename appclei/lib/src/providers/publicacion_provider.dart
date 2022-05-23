@@ -24,8 +24,7 @@ class PublicacionProvider {
   Future<List<PublicacionModel>> cargarPublicaciones() async {
     final url = '$_url/publicaciones.json';
     final resp = await http.get(Uri.parse(url));
-
-
+    final decodedData = json.decode(resp.body);
 
     return [];
   }
@@ -52,7 +51,18 @@ class PublicacionProvider {
     final respData = json.decode(resp.body);
 
     return respData['secure_url'];
+  
   }
+
+  Future<int> borrarPublicacion(String id) async{
+     final url = '$_url/publicaciones/$id.json';
+     final resp =await http.delete(Uri.parse(url));
+
+     print(json.decode(resp.body));
+
+     return 1;
+  }
+
 
   Future<List<PublicacionModel>> cargarPublicacion() async {
     final url = '$_url/publicaciones.json';
@@ -62,6 +72,7 @@ class PublicacionProvider {
 
     final List<PublicacionModel> publicaciones = [];
 
+    // ignore: unnecessary_null_comparison
     if (decodedData == null) return [];
 
     decodedData.forEach((id, prod) {
@@ -69,10 +80,7 @@ class PublicacionProvider {
       prodTemp.id = id;
 
       publicaciones.add(prodTemp);
-      print(id);
     });
-
-    print(publicaciones);
 
     return publicaciones;
   }
