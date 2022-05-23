@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'noticia.dart';
 
 class StudioPage extends StatefulWidget {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 87010031ff4143001ce02617faaaed60b3718b0b
   const StudioPage({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +21,11 @@ class _StudioPageState extends State<StudioPage> {
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
 
   final publicacionProvider = PublicacionProvider();
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 87010031ff4143001ce02617faaaed60b3718b0b
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +86,11 @@ class _StudioPageState extends State<StudioPage> {
                       const EdgeInsets.only(bottom: 10, left: 20, right: 20),
                 );
               },
+<<<<<<< HEAD
             );
+=======
+            ); 
+>>>>>>> 87010031ff4143001ce02617faaaed60b3718b0b
           } else {
             return const Center(child: CircularProgressIndicator());
           }
@@ -90,9 +102,14 @@ class crearNoticia2 extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   String id = "";
   bool tipo = false;
+<<<<<<< HEAD
   final publicacionProvider = PublicacionProvider();
   crearNoticia2(this.miNoticia, bool t, fotos, String miId, {Key? key})
       : super(key: key) {
+=======
+
+  crearNoticia2(this.miNoticia, bool t, fotos, {Key? key}) : super(key: key) {
+>>>>>>> 87010031ff4143001ce02617faaaed60b3718b0b
     tipo = t;
     id = miId;
   }
@@ -163,6 +180,7 @@ class crearNoticia2 extends StatelessWidget {
                   left: 278,
                 ),
                 child: Row(children: [
+<<<<<<< HEAD
                   GestureDetector(
                     onTap: () {},
                     child: Container(
@@ -175,6 +193,18 @@ class crearNoticia2 extends StatelessWidget {
                             bottomRight: Radius.circular(10),
                             bottomLeft: Radius.circular(10),
                           )),
+=======
+                  GestureDetector(onTap: (){
+                  },
+                    child: Container(margin: const EdgeInsets.all(12), decoration:const BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft:Radius.circular(10),
+      topRight: Radius.circular(10),
+      bottomRight: Radius.circular(10),
+      bottomLeft: Radius.circular(10),
+    )),
+>>>>>>> 87010031ff4143001ce02617faaaed60b3718b0b
                       child: const Icon(
                         Icons.update,
                         size: 40,
@@ -184,6 +214,7 @@ class crearNoticia2 extends StatelessWidget {
                       height: 40,
                     ),
                   ),
+<<<<<<< HEAD
                   GestureDetector(
                     onTap: () {
                      publicacionProvider.borrarPublicacion(id);
@@ -210,6 +241,20 @@ class crearNoticia2 extends StatelessWidget {
                       ),
                       width: 40,
                       height: 40,
+=======
+                  Container(decoration:const BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft:Radius.circular(10),
+      topRight: Radius.circular(10),
+      bottomRight: Radius.circular(10),
+      bottomLeft: Radius.circular(10),
+    )), 
+                    child: const Icon(
+                      Icons.delete_outline,
+                      size: 40,
+                      color: Colors.blue,
+>>>>>>> 87010031ff4143001ce02617faaaed60b3718b0b
                     ),
                   )
                 ]),
