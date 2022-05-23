@@ -231,7 +231,7 @@ class crearNoticia extends StatelessWidget {
                 child: Container(
                   margin: const EdgeInsets.all(5),
                   child: Text( miNoticia.getDescripcion(),
-                    textAlign: TextAlign.left,
+                    textAlign:  TextAlign.justify,
                     style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
                   ),
                 ),

@@ -296,7 +296,7 @@ class _CrearPageState extends State<CrearPage> {
       _imag.add(imageTemporary);
 
       if (this.image != null) {
-        
+        int id=cont;
         Container a = Container(
             child: Stack(
           children: [
@@ -311,11 +311,11 @@ class _CrearPageState extends State<CrearPage> {
             ),
             GestureDetector(
               onTap: () {
-                print('aaa');
+             
 
-                _imag.remove(0);
-                _imag.remove(cont);
-                print(_img);
+                _img[id]=Container();
+                
+               
                 setState(() {
                   
                 });
@@ -344,10 +344,7 @@ class _CrearPageState extends State<CrearPage> {
        
         _img.insert(cont,a);
         cont++;
-        _img.insert(cont,Container(
-          width: 20,
-        ) ) ;
-        cont++;
+       
       }
     } on PlatformException catch (e) {
       // ignore: avoid_print
