@@ -24,6 +24,7 @@ class PublicacionProvider {
   Future<List<PublicacionModel>> cargarPublicaciones() async {
     final url = '$_url/publicaciones.json';
     final resp = await http.get(Uri.parse(url));
+    // ignore: unused_local_variable
     final decodedData = json.decode(resp.body);
 
     return [];
@@ -51,18 +52,14 @@ class PublicacionProvider {
     final respData = json.decode(resp.body);
 
     return respData['secure_url'];
-  
   }
 
-  Future<int> borrarPublicacion(String id) async{
-     final url = '$_url/publicaciones/$id.json';
-     final resp =await http.delete(Uri.parse(url));
+  Future<int> borrarPublicacion(String id) async {
+    final url = '$_url/publicaciones/$id.json';
+    final resp = await http.delete(Uri.parse(url));
 
-     print(json.decode(resp.body));
-
-     return 1;
+    return 1;
   }
-
 
   Future<List<PublicacionModel>> cargarPublicacion() async {
     final url = '$_url/publicaciones.json';
