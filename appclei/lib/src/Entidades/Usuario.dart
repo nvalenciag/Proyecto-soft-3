@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 class Usuario {
-  final String nombre;
+  String nombre;
   final String correo;
   final String rutaImagen;
 
@@ -12,4 +12,8 @@ class Usuario {
   get getCorreo => correo;
 
   get getRutaImagen => rutaImagen;
+
+  void setNombre( String nombre ){
+    this.nombre = nombre;
+  }
 }
