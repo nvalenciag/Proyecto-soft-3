@@ -3,13 +3,22 @@ import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
 
-import 'notice_page.dart';
 import 'noticia.dart';
 
-class StudioPage extends StatelessWidget {
+class StudioPage extends StatefulWidget {
+
+  const StudioPage({Key? key}) : super(key: key);
+
+  @override
+  State<StudioPage> createState() => _StudioPageState();
+}
+
+class _StudioPageState extends State<StudioPage> {
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
+
   final publicacionProvider = PublicacionProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +60,6 @@ class StudioPage extends StatelessWidget {
         builder: (BuildContext context,
             AsyncSnapshot<List<PublicacionModel>> snapshot) {
           if (snapshot.hasData) {
-            print('aaaaaaaaaaaa');
             final publicacion = snapshot.data;
             int num = publicacion!.length;
             return ListView.builder(
@@ -70,16 +78,7 @@ class StudioPage extends StatelessWidget {
                    bottom:10,left:20,right: 20 ),
                 );
               },
-            ); /*ListView.builder(
-              itemCount: publicacion!.length,
-              /*itemBuilder: (BuildContext context, int index) =>
-                  _crearItem(publicacion[index]),*/
-              itemBuilder: (context,num ) {
-                return ListTile(
-                  title: Text(publicacion[num].titulo),
-                );
-              },
-            );*/
+            ); 
           } else {
             return const Center(child: CircularProgressIndicator());
           }
@@ -91,13 +90,13 @@ class crearNoticia2 extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   bool tipo = false;
 
-  crearNoticia2(Noticia miNoticia, bool t, fotos) {
-    this.miNoticia = miNoticia;
+  crearNoticia2(this.miNoticia, bool t, fotos, {Key? key}) : super(key: key) {
     tipo = t;
   }
 
   @override
   Widget build(BuildContext context) {
+    // ignore: todo
     // TODO: implement build
     if (tipo) {
       return Container(
@@ -116,11 +115,8 @@ class crearNoticia2 extends StatelessWidget {
           },
           child: Stack(
             children: [
-              Container(
-                //color: Colors.red,
-                child: Image(
-                  image: Image.network(miNoticia.getImagen()).image,
-                ),
+              Image(
+                image: Image.network(miNoticia.getImagen()).image,
               ),
               Container(
                 margin: const EdgeInsets.only(top: 150),
@@ -164,9 +160,8 @@ class crearNoticia2 extends StatelessWidget {
                    left:  278, ),
                 child: Row(children: [
                   GestureDetector(onTap: (){
-                    print('aaa');
                   },
-                    child: Container(margin: EdgeInsets.all(12), decoration:BoxDecoration(
+                    child: Container(margin: const EdgeInsets.all(12), decoration:const BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.only(
       topLeft:Radius.circular(10),
@@ -174,7 +169,7 @@ class crearNoticia2 extends StatelessWidget {
       bottomRight: Radius.circular(10),
       bottomLeft: Radius.circular(10),
     )),
-                      child: Icon(
+                      child: const Icon(
                         Icons.update,
                         size: 40,
                         color: Colors.blue,
@@ -183,7 +178,7 @@ class crearNoticia2 extends StatelessWidget {
                       height: 40,
                     ),
                   ),
-                  Container(decoration:BoxDecoration(
+                  Container(decoration:const BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.only(
       topLeft:Radius.circular(10),
@@ -191,7 +186,7 @@ class crearNoticia2 extends StatelessWidget {
       bottomRight: Radius.circular(10),
       bottomLeft: Radius.circular(10),
     )), 
-                    child: Icon(
+                    child: const Icon(
                       Icons.delete_outline,
                       size: 40,
                       color: Colors.blue,

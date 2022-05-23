@@ -6,6 +6,7 @@ import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
 
 class NoticePage extends StatelessWidget {
+
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
   final publicacionProvider = PublicacionProvider();
@@ -39,33 +40,28 @@ class NoticePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  //color: Colors.green,
-                  child: Row(
-                    children: [
-                      Container(
-                        child: const Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                            "Todas",
-                            style: TextStyle(
-                                color: ColorsCLei.azulOscuro,
-                                fontSize: 20,
-                                fontFamily: 'relaway'),
-                          ),
-                        ),
+                Row(
+                  children: [
+                    const Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        "Todas",
+                        style: TextStyle(
+                            color: ColorsCLei.azulOscuro,
+                            fontSize: 20,
+                            fontFamily: 'relaway'),
                       ),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        //color: Colors.green,
-                        width: 20,
-                        child: const Image(
-                          image: AssetImage('assets/next.png'),
-                          color: ColorsCLei.azulOscuro,
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      //color: Colors.green,
+                      width: 20,
+                      child: const Image(
+                        image: AssetImage('assets/next.png'),
+                        color: ColorsCLei.azulOscuro,
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
@@ -139,7 +135,6 @@ class NoticePage extends StatelessWidget {
         builder: (BuildContext context,
             AsyncSnapshot<List<PublicacionModel>> snapshot) {
           if (snapshot.hasData) {
-            print('aaaaaaaaaaaa');
             final publicacion = snapshot.data;
             int num = publicacion!.length;
             return ListView.builder(
@@ -162,7 +157,6 @@ class NoticePage extends StatelessWidget {
               },
             );*/
           } else {
-            print('aaaaaaaaaaaa');
             return const Center(child: CircularProgressIndicator());
           }
         });
@@ -197,15 +191,13 @@ class crearNoticia extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   bool tipo=false;
 
-  crearNoticia(Noticia miNoticia, bool t,fotos) {
-    this.miNoticia = miNoticia;
+  crearNoticia(this.miNoticia, bool t,fotos, {Key? key}) : super(key: key) {
     tipo=t;
 
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     if(tipo){
     return Container(margin: const EdgeInsets.all(13.0),
       width: 300,
@@ -222,13 +214,10 @@ class crearNoticia extends StatelessWidget {
         },
         child: Stack(
           children: [
-            Container(
-              //color: Colors.red,
-              child: Image(
-                image: Image.network(
-                  miNoticia.getImagen(),
-                ).image,
-              ),
+            Image(
+              image: Image.network(
+                miNoticia.getImagen(),
+              ).image,
             ),
             Container(
               margin: const EdgeInsets.only(top: 150),

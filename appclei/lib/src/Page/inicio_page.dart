@@ -8,6 +8,7 @@ import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
 
 class InicioPage extends StatefulWidget {
+
   Usuario usuario;
 
   InicioPage({Key? key, required this.usuario}) : super(key: key);
@@ -41,7 +42,6 @@ class _InicioPageState extends State<InicioPage> {
   ];
 
   visualizar() {
-    print('a');
   }
 
   @override
