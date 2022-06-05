@@ -71,7 +71,7 @@ class _StudioPageState extends State<StudioPage> {
                     publicacion[num].descripcion,
                     publicacion[num].fotoUrl.split("+imag+")[0]);
                 return Container(
-                  child: crearNoticia2(miNoti, true, publicacion[num].fotoUrl,
+                  child: CrearNoticia2(miNoti, true, publicacion[num].fotoUrl,
                       publicacion[num].id),
                   height: 300,
                   margin:
@@ -86,12 +86,13 @@ class _StudioPageState extends State<StudioPage> {
   }
 }
 
-class crearNoticia2 extends StatelessWidget {
+// ignore: camel_case_types
+class CrearNoticia2 extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   String id = "";
   bool tipo = false;
   final publicacionProvider = PublicacionProvider();
-  crearNoticia2(this.miNoticia, bool t, fotos, String miId, {Key? key})
+  CrearNoticia2(this.miNoticia, bool t, fotos, String miId, {Key? key})
       : super(key: key) {
     tipo = t;
     id = miId;
