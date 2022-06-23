@@ -93,4 +93,27 @@ class PublicacionProvider {
 
     return true;
   }
+
+
+  Future<List<ComentarioModel>> cargarComentario(String idNoticia) async {
+    final url = '$_url/comentarios/$idNoticia.json';
+    final resp = await http.get(Uri.parse(url));
+
+    final Map<String, dynamic> decodedData = json.decode(resp.body);
+
+    final List<ComentarioModel> comentarios = [];
+
+    // ignore: unnecessary_null_comparison
+    if (decodedData == null) return [];
+
+    decodedData.forEach((id, prod) {
+      final prodTemp = ComentarioModel.fromJson(prod);
+      prodTemp.id = id;
+
+      comentarios.add(prodTemp);
+    });
+
+    return comentarios;
+  }
+
 }

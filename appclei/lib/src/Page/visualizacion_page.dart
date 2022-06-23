@@ -17,10 +17,11 @@ class VisualisacionPage extends StatefulWidget {
 class _VisualisacionPageState extends State<VisualisacionPage> {
   String idNoticia = '';
   String _comentario = '';
-  
-  ComentarioModel comentarioModel= ComentarioModel(
-      id: "", nombre: "qq", mensaje: "", fotoUrl: "qqq");
-      final publicacionProvider = PublicacionProvider();
+  late List<Widget> a;
+
+  ComentarioModel comentarioModel =
+      ComentarioModel(id: "", nombre: "qq", mensaje: "", fotoUrl: "qqq");
+  final publicacionProvider = PublicacionProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
     final Noticia miNoticia = Noticia.i(data['titulo'], data['descripcion'],
         data['imagenUrl'].split('+imag')[0]);
     idNoticia = data['id'];
-    comentarioModel.nombre=data['nombreUser'];
-    comentarioModel.fotoUrl=data['fotoUser'];
-  
+    comentarioModel.nombre = data['nombreUser'];
+    comentarioModel.fotoUrl = data['fotoUser'];
+
     // ignore: todo
     // TODO: implement build
     return Scaffold(
@@ -99,7 +100,7 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
                 onChanged: (valor) {
                   setState(() {
                     _comentario = valor;
-                    comentarioModel.mensaje=valor;
+                    comentarioModel.mensaje = valor;
                   });
                 },
                 decoration: InputDecoration(
@@ -119,8 +120,10 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
                   hintText: 'Agregar un comentario',
                 ),
               )),
-          crearComentario(),
-          crearComentario()
+          Center(
+              child: Container(
+            child: _crearListado(),
+          )),
         ],
       ),
     );
@@ -164,13 +167,35 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
         ]);
   }
 
-  void comentar() async{
-
-    publicacionProvider.crearComentario(comentarioModel,idNoticia);
-    
+  void comentar() async {
+    publicacionProvider.crearComentario(comentarioModel, idNoticia);
   }
 
-  Widget crearComentario() {
+  _crearListado() {
+    return FutureBuilder(
+        future: publicacionProvider.cargarComentario(idNoticia),
+        builder: (BuildContext context,
+            AsyncSnapshot<List<ComentarioModel>> snapshot) {
+          if (snapshot.hasData) {
+            final publicacion = snapshot.data;
+            int num = publicacion!.length;
+            return ListView.builder(
+              itemCount: num,
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(10),
+              itemBuilder: (context, num) {
+                return crearComentario(publicacion[num].fotoUrl,
+                    publicacion[num].mensaje, publicacion[num].nombre);
+              },
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        });
+  }
+
+  Widget crearComentario(String urlA, String mensaje, String nombre) {
     // ignore: todo
     // TODO: implement build
     return Container(
@@ -186,8 +211,8 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
             ),
             width: 40,
             height: 40,
-            child: const Image(
-              image: AssetImage('assets/perfil.png'),
+            child: Image(
+              image: NetworkImage(urlA),
             ),
           ),
           Container(
@@ -195,7 +220,7 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
             //color: Colors.pink,
             height: 20,
             child: Text(
-              'Nombre real',
+              nombre,
               style: TextStyle(color: Colors.grey.shade700),
             ),
           ),
@@ -203,7 +228,7 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
             margin:
                 const EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 10),
             //color: Colors.pink,
-            child: const Text('Muy facha la publicacion'),
+            child: Text(mensaje),
           )
         ],
       ),
