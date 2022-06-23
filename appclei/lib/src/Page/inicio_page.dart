@@ -32,7 +32,7 @@ class _InicioPageState extends State<InicioPage> {
       const TextStyle(fontFamily: 'ModernSans', fontSize: 17.0, height: 1.5);
 
    List<Widget> _widgetOptions() =>  [
-    NoticePage(),
+    NoticePage(usuario:miUsuario),
     const FavoritosPage(),
     const Text(
       'Index 2: Buscar',

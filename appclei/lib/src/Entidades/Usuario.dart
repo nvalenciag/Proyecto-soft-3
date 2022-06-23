@@ -2,7 +2,7 @@
 class Usuario {
   String nombre;
   final String correo;
-  final String rutaImagen;
+  late final String rutaImagen;
 
   Usuario(
       {required this.nombre, required this.correo, required this.rutaImagen});

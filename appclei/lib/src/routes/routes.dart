@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
     '/': (BuildContext context) => LoginPage(),
-    '#': (BuildContext context) => NoticePage(),
+   // '#': (BuildContext context) => NoticePage(),
     '@': (BuildContext context) => const FavoritosPage(),
 
     //'-':(BuildContext context)=>InicioPage(),

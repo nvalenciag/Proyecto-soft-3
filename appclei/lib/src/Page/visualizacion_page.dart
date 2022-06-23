@@ -1,5 +1,6 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/noticia.dart';
 import 'package:appclei/src/models/comentarioModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
@@ -16,6 +17,7 @@ class VisualisacionPage extends StatefulWidget {
 class _VisualisacionPageState extends State<VisualisacionPage> {
   String idNoticia = '';
   String _comentario = '';
+  
   ComentarioModel comentarioModel= ComentarioModel(
       id: "", nombre: "qq", mensaje: "", fotoUrl: "qqq");
       final publicacionProvider = PublicacionProvider();
@@ -27,6 +29,9 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
     final Noticia miNoticia = Noticia.i(data['titulo'], data['descripcion'],
         data['imagenUrl'].split('+imag')[0]);
     idNoticia = data['id'];
+    comentarioModel.nombre=data['nombreUser'];
+    comentarioModel.fotoUrl=data['fotoUser'];
+  
     // ignore: todo
     // TODO: implement build
     return Scaffold(
@@ -161,7 +166,7 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
 
   void comentar() async{
 
-    publicacionProvider.crearComentario(comentarioModel);
+    publicacionProvider.crearComentario(comentarioModel,idNoticia);
     
   }
 

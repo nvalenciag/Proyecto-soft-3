@@ -83,8 +83,8 @@ class PublicacionProvider {
     return publicaciones;
   }
 
-   Future<bool> crearComentario(ComentarioModel publicacion) async {
-    final url = '$_url/comentarios/aa.json';
+   Future<bool> crearComentario(ComentarioModel publicacion,String idNoticia) async {
+    final url = '$_url/comentarios/$idNoticia.json';
 
     final resp = await http.post(Uri.parse(url),
         body: comentarioModelToJson(publicacion));

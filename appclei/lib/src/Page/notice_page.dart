@@ -1,5 +1,6 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/noticia.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
@@ -9,7 +10,13 @@ class NoticePage extends StatelessWidget {
 
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
+
+  Usuario usuario=Usuario(nombre: "", correo: "", rutaImagen: "");
   final publicacionProvider = PublicacionProvider();
+
+
+ NoticePage({required this.usuario});
+
   @override
   Widget build(BuildContext context) {
     // ignore: todo
@@ -144,7 +151,7 @@ class NoticePage extends StatelessWidget {
               itemBuilder: (context, num) {
                 Noticia miNoti = Noticia.i(publicacion[num].titulo,
                     publicacion[num].descripcion, publicacion[num].fotoUrl.split("+imag+")[0]);
-                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl,publicacion[num].id);
+                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl,usuario,publicacion[num].id);
               },
             ); /*ListView.builder(
               itemCount: publicacion!.length,
@@ -185,16 +192,22 @@ class NoticePage extends StatelessWidget {
           )
         ]);
   }
+
+
+
 }
 
 class crearNoticia extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   bool tipo=false;
   String idNoticia="";
+  Usuario user=new Usuario(nombre: "", correo: "", rutaImagen: "");
+  
 
-  crearNoticia(this.miNoticia, bool t,fotos,String id , {Key? key}) : super(key: key) {
+  crearNoticia(this.miNoticia, bool t,fotos,Usuario user,String id , {Key? key}) : super(key: key) {
     tipo=t;
     this.idNoticia=id;
+    this.user=user;
 
   }
 
@@ -208,6 +221,9 @@ class crearNoticia extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Map<String,String> map = {
+            
+            'nombreUser':user.nombre,
+            'fotoUser':user.rutaImagen,
              'id': idNoticia,
             'titulo': miNoticia.titulo,
             'descripcion': miNoticia.descripcion,
