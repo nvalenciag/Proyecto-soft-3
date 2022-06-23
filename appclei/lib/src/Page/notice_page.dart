@@ -144,7 +144,7 @@ class NoticePage extends StatelessWidget {
               itemBuilder: (context, num) {
                 Noticia miNoti = Noticia.i(publicacion[num].titulo,
                     publicacion[num].descripcion, publicacion[num].fotoUrl.split("+imag+")[0]);
-                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl);
+                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl,publicacion[num].id);
               },
             ); /*ListView.builder(
               itemCount: publicacion!.length,
@@ -190,9 +190,11 @@ class NoticePage extends StatelessWidget {
 class crearNoticia extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   bool tipo=false;
+  String idNoticia="";
 
-  crearNoticia(this.miNoticia, bool t,fotos, {Key? key}) : super(key: key) {
+  crearNoticia(this.miNoticia, bool t,fotos,String id , {Key? key}) : super(key: key) {
     tipo=t;
+    this.idNoticia=id;
 
   }
 
@@ -206,6 +208,7 @@ class crearNoticia extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Map<String,String> map = {
+             'id': idNoticia,
             'titulo': miNoticia.titulo,
             'descripcion': miNoticia.descripcion,
             'imagenUrl': miNoticia.imagenUrl

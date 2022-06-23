@@ -1,20 +1,32 @@
-
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Page/noticia.dart';
+import 'package:appclei/src/models/comentarioModel.dart';
+import 'package:appclei/src/providers/publicacion_provider.dart';
+
 import 'package:flutter/material.dart';
 
-class VisualisacionPage extends StatelessWidget {
+class VisualisacionPage extends StatefulWidget {
   const VisualisacionPage({Key? key}) : super(key: key);
 
+  @override
+  State<VisualisacionPage> createState() => _VisualisacionPageState();
+}
 
-  
+class _VisualisacionPageState extends State<VisualisacionPage> {
+  String idNoticia = '';
+  String _comentario = '';
+  ComentarioModel comentarioModel= ComentarioModel(
+      id: "", nombre: "qq", mensaje: "", fotoUrl: "qqq");
+      final publicacionProvider = PublicacionProvider();
+
   @override
   Widget build(BuildContext context) {
-
     Map data = {};
-    data = ModalRoute.of(context)?.settings.arguments as Map; 
-    final Noticia miNoticia = Noticia.i(data['titulo'],  data['descripcion'],data['imagenUrl'].split('+imag')[0]);
+    data = ModalRoute.of(context)?.settings.arguments as Map;
+    final Noticia miNoticia = Noticia.i(data['titulo'], data['descripcion'],
+        data['imagenUrl'].split('+imag')[0]);
+    idNoticia = data['id'];
     // ignore: todo
     // TODO: implement build
     return Scaffold(
@@ -32,12 +44,12 @@ class VisualisacionPage extends StatelessWidget {
                     color: Colors.white,
                     border: Border.all(color: Colors.grey)),
                 child: Container(
-                  margin: const EdgeInsets.only(top: 100, left: 40, right: 40, bottom: 100),
+                  margin: const EdgeInsets.only(
+                      top: 100, left: 40, right: 40, bottom: 100),
                   //color: Colors.red,
-                  child: Text(
-                      '${miNoticia.descripcion} '),
-                  ),
+                  child: Text('${miNoticia.descripcion} '),
                 ),
+              ),
               Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(top: 150, left: 40, right: 40),
@@ -46,8 +58,8 @@ class VisualisacionPage extends StatelessWidget {
                     color: Colors.white,
                     border: Border.all(color: Colors.grey)),
                 child: Container(
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 15, horizontal: 20),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                   child: Text(
                     miNoticia.titulo,
                     style: const TextStyle(fontSize: 20),
@@ -79,14 +91,25 @@ class VisualisacionPage extends StatelessWidget {
                 color: Colors.white,
               ),
               child: TextField(
+                onChanged: (valor) {
+                  setState(() {
+                    _comentario = valor;
+                    comentarioModel.mensaje=valor;
+                  });
+                },
                 decoration: InputDecoration(
-                  suffixIcon: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-                    child: const Image(
-                      image: AssetImage('assets/lupa.png'),
-                      color: Colors.blue,
-                    ),
-                  ),
+                  suffixIcon: GestureDetector(
+                      onTap: () {
+                        comentar();
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 4),
+                        child: const Image(
+                          image: AssetImage('assets/send.png'),
+                          color: Colors.blue,
+                        ),
+                      )),
                   border: InputBorder.none,
                   hintText: 'Agregar un comentario',
                 ),
@@ -135,12 +158,14 @@ class VisualisacionPage extends StatelessWidget {
           )
         ]);
   }
-}
 
-class crearComentario extends StatelessWidget {
+  void comentar() async{
 
-  @override
-  Widget build(BuildContext context) {
+    publicacionProvider.crearComentario(comentarioModel);
+    
+  }
+
+  Widget crearComentario() {
     // ignore: todo
     // TODO: implement build
     return Container(
@@ -170,7 +195,8 @@ class crearComentario extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 10),
+            margin:
+                const EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 10),
             //color: Colors.pink,
             child: const Text('Muy facha la publicacion'),
           )

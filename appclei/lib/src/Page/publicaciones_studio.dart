@@ -2,6 +2,7 @@ import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'noticia.dart';
 
@@ -87,11 +88,11 @@ class _StudioPageState extends State<StudioPage> {
 }
 
 // ignore: camel_case_types
-class CrearNoticia2 extends StatelessWidget {
+class CrearNoticia2 extends StatefulWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   String id = "";
   bool tipo = false;
-  final publicacionProvider = PublicacionProvider();
+
   CrearNoticia2(this.miNoticia, bool t, fotos, String miId, {Key? key})
       : super(key: key) {
     tipo = t;
@@ -99,10 +100,17 @@ class CrearNoticia2 extends StatelessWidget {
   }
 
   @override
+  State<CrearNoticia2> createState() => _CrearNoticia2State();
+}
+
+class _CrearNoticia2State extends State<CrearNoticia2> {
+  final publicacionProvider = PublicacionProvider();
+
+  @override
   Widget build(BuildContext context) {
     // ignore: todo
     // TODO: implement build
-    if (tipo) {
+    if (widget.tipo) {
       return Container(
         margin: const EdgeInsets.all(13.0),
         width: 300,
@@ -111,16 +119,16 @@ class CrearNoticia2 extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Map<String, String> map = {
-              'titulo': miNoticia.titulo,
-              'descripcion': miNoticia.descripcion,
-              'imagenUrl': miNoticia.imagenUrl
+              'titulo': widget.miNoticia.titulo,
+              'descripcion': widget.miNoticia.descripcion,
+              'imagenUrl': widget.miNoticia.imagenUrl
             };
             Navigator.pushNamed(context, '-', arguments: map);
           },
           child: Stack(
             children: [
               Image(
-                image: Image.network(miNoticia.getImagen()).image,
+                image: Image.network(widget.miNoticia.getImagen()).image,
               ),
               Container(
                 margin: const EdgeInsets.only(top: 150),
@@ -140,7 +148,7 @@ class CrearNoticia2 extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 20),
                     child: Text(
-                      miNoticia.getTitulo(),
+                      widget.miNoticia.getTitulo(),
                       style: const TextStyle(fontSize: 19),
                     ),
                   ),
@@ -153,7 +161,7 @@ class CrearNoticia2 extends StatelessWidget {
                 child: Container(
                   margin: const EdgeInsets.all(5),
                   child: Text(
-                    miNoticia.getDescripcion(),
+                    widget.miNoticia.getDescripcion(),
                     textAlign: TextAlign.left,
                     style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
                   ),
@@ -187,9 +195,12 @@ class CrearNoticia2 extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                     publicacionProvider.borrarPublicacion(id);
+                     publicacionProvider.borrarPublicacion(widget.id);
                     
-                      Navigator.pushNamed(context, 'm');    
+                     setState(() {
+                  
+                });
+                     
                         
                       
                     },

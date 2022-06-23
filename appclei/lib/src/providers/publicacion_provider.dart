@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:appclei/src/models/comentarioModel.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -80,5 +81,16 @@ class PublicacionProvider {
     });
 
     return publicaciones;
+  }
+
+   Future<bool> crearComentario(ComentarioModel publicacion) async {
+    final url = '$_url/comentarios/aa.json';
+
+    final resp = await http.post(Uri.parse(url),
+        body: comentarioModelToJson(publicacion));
+
+    final decodedData = json.decode(resp.body);
+
+    return true;
   }
 }
