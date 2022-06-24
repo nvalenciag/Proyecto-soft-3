@@ -1,4 +1,5 @@
 import 'package:appclei/presentation/icons_clei_icons.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,10 @@ import 'package:get/get.dart';
 import 'noticia.dart';
 
 class StudioPage extends StatefulWidget {
-  const StudioPage({Key? key}) : super(key: key);
+ 
+  Usuario usuario=Usuario(nombre: "", correo: "", rutaImagen: "");
 
+ StudioPage({required this.usuario});
   @override
   State<StudioPage> createState() => _StudioPageState();
 }
@@ -16,9 +19,10 @@ class StudioPage extends StatefulWidget {
 class _StudioPageState extends State<StudioPage> {
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
+   
 
   final publicacionProvider = PublicacionProvider();
-  
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +77,7 @@ class _StudioPageState extends State<StudioPage> {
                     publicacion[num].fotoUrl.split("+imag+")[0]);
                 return Container(
                   child: CrearNoticia2(miNoti, true, publicacion[num].fotoUrl,
-                      publicacion[num].id),
+                      publicacion[num].id,widget.usuario,publicacion[num].id),
                   height: 300,
                   margin:
                       const EdgeInsets.only(bottom: 10, left: 20, right: 20),
@@ -92,11 +96,14 @@ class CrearNoticia2 extends StatefulWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   String id = "";
   bool tipo = false;
-
-  CrearNoticia2(this.miNoticia, bool t, fotos, String miId, {Key? key})
+String idNoticia="";
+  Usuario user=new Usuario(nombre: "", correo: "", rutaImagen: "");
+  CrearNoticia2(this.miNoticia, bool t, fotos, String miId,Usuario user,String id , {Key? key})
       : super(key: key) {
     tipo = t;
     id = miId;
+    this.idNoticia=id;
+    this.user=user;
   }
 
   @override
@@ -119,6 +126,9 @@ class _CrearNoticia2State extends State<CrearNoticia2> {
         child: GestureDetector(
           onTap: () {
             Map<String, String> map = {
+               'nombreUser':widget.user.nombre,
+            'fotoUser':widget.user.rutaImagen,
+             'id': widget.idNoticia,
               'titulo': widget.miNoticia.titulo,
               'descripcion': widget.miNoticia.descripcion,
               'imagenUrl': widget.miNoticia.imagenUrl

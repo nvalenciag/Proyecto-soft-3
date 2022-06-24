@@ -98,7 +98,7 @@ class PublicacionProvider {
   Future<List<ComentarioModel>> cargarComentario(String idNoticia) async {
     final url = '$_url/comentarios/$idNoticia.json';
     final resp = await http.get(Uri.parse(url));
-
+    if(json.decode(resp.body)!=null){
     final Map<String, dynamic> decodedData = json.decode(resp.body);
 
     final List<ComentarioModel> comentarios = [];
@@ -114,6 +114,9 @@ class PublicacionProvider {
     });
 
     return comentarios;
+    }
+    return [];
+    
   }
 
 }

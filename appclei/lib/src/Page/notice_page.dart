@@ -6,16 +6,21 @@ import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
 
-class NoticePage extends StatelessWidget {
+class NoticePage extends StatefulWidget {
 
+  Usuario usuario=Usuario(nombre: "", correo: "", rutaImagen: "");
+
+ NoticePage({required this.usuario});
+
+  @override
+  State<NoticePage> createState() => _NoticePageState();
+}
+
+class _NoticePageState extends State<NoticePage> {
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
 
-  Usuario usuario=Usuario(nombre: "", correo: "", rutaImagen: "");
   final publicacionProvider = PublicacionProvider();
-
-
- NoticePage({required this.usuario});
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +156,7 @@ class NoticePage extends StatelessWidget {
               itemBuilder: (context, num) {
                 Noticia miNoti = Noticia.i(publicacion[num].titulo,
                     publicacion[num].descripcion, publicacion[num].fotoUrl.split("+imag+")[0]);
-                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl,usuario,publicacion[num].id);
+                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl,widget.usuario,publicacion[num].id);
               },
             ); /*ListView.builder(
               itemCount: publicacion!.length,
@@ -168,7 +173,6 @@ class NoticePage extends StatelessWidget {
           }
         });
   }
-
 
   AppBar appBarNoticias() {
     return AppBar(
@@ -192,9 +196,6 @@ class NoticePage extends StatelessWidget {
           )
         ]);
   }
-
-
-
 }
 
 class crearNoticia extends StatelessWidget {

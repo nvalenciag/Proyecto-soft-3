@@ -107,6 +107,7 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
                   suffixIcon: GestureDetector(
                       onTap: () {
                         comentar();
+                        
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(
@@ -150,12 +151,14 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
               Navigator.of(context).pop();
             }),
         actions: <Widget>[
-          IconButton(
+          IconButton( 
             icon: const Icon(
               IconsClei.favorito,
-              color: ColorsCLei.azulOscuro,
+              color: ColorsCLei.gris,
             ),
-            onPressed: () {},
+            onPressed: () {
+              
+            },
           ),
           IconButton(
             icon: const Icon(
@@ -176,9 +179,12 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
         future: publicacionProvider.cargarComentario(idNoticia),
         builder: (BuildContext context,
             AsyncSnapshot<List<ComentarioModel>> snapshot) {
+              print(snapshot);
           if (snapshot.hasData) {
+         
             final publicacion = snapshot.data;
-            int num = publicacion!.length;
+            int num = publicacion!.length; 
+              if(num!=0){
             return ListView.builder(
               itemCount: num,
               scrollDirection: Axis.vertical,
@@ -188,7 +194,10 @@ class _VisualisacionPageState extends State<VisualisacionPage> {
                 return crearComentario(publicacion[num].fotoUrl,
                     publicacion[num].mensaje, publicacion[num].nombre);
               },
-            );
+            );}else{
+              return  Container(width:250,height: 250,child: Image(image: AssetImage('assets/mondongo.jpg'),));
+
+            }
           } else {
             return const Center(child: CircularProgressIndicator());
           }

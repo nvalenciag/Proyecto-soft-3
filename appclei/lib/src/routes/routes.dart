@@ -17,7 +17,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     '.': (BuildContext context) => const EstructuraNavegacion(),
     '+': (BuildContext context) => const CrearPage(),
     '-': (BuildContext context) => const VisualisacionPage(),
-    'm': (BuildContext context) => const StudioPage(),
+
     
   };
 }
